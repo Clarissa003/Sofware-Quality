@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<configuration>
+    <module name="Checker">
+        <!-- Use camelCase only -->
+        <module name="RegexpSingleline">
+            <property name="format" value="^[a-z]+[a-zA-Z0-9]*$"/>
+            <property name="message" value="Variable names should be in camelCase"/>
+        </module>
+
+        <!-- Brackets: Put opening bracket on new line -->
+        <module name="LeftCurly"/>
+
+        <!-- Space before and after expressions -->
+        <module name="WhitespaceAround">
+            <property name="tokens" value="ASSIGN,PLUS,EQUAL"/>
+        </module>
+
+        <!-- Add empty line to separate code blocks -->
+        <module name="EmptyLineSeparator"/>
+    </module>
+
+    <!-- Indent: 4 spaces -->
+    <module name="Indentation">
+        <property name="basicOffset" value="4"/>
+    </module>
+</configuration>
