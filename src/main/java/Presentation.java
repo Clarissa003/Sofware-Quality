@@ -96,6 +96,10 @@ public class Presentation {
 		return getSlide(currentSlideNumber);
 	}
 
+	public void executeCommand(Command command) {
+		command.execute();
+	}
+
 	public void exit(int n) {
 		System.exit(n);
 	}
