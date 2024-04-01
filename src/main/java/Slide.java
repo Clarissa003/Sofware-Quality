@@ -79,4 +79,8 @@ public class Slide {
 	private float getScale(Rectangle area) {
 		return Math.min(((float)area.width) / ((float)WIDTH), ((float)area.height) / ((float)HEIGHT));
 	}
+
+	public static SlideBuilder newBuilder() {
+		return new SimplePresentationBuilder ();
+	}
 }
