@@ -1,26 +1,173 @@
-<?xml version="1.0"?>
-<configuration>
-    <module name="Checker">
-        <!-- Use camelCase only -->
-        <module name="RegexpSingleline">
-            <property name="format" value="^[a-z]+[a-zA-Z0-9]*$"/>
-            <property name="message" value="Variable names should be in camelCase"/>
-        </module>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-        <!-- Brackets: Put opening bracket on new line -->
-        <module name="LeftCurly"/>
+    <modelVersion>4.0.0</modelVersion>
 
-        <!-- Space before and after expressions -->
-        <module name="WhitespaceAround">
-            <property name="tokens" value="ASSIGN,PLUS,EQUAL"/>
-        </module>
+    <groupId>com.nhlstenden</groupId>
+    <artifactId>jabberpoint</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-        <!-- Add empty line to separate code blocks -->
-        <module name="EmptyLineSeparator"/>
-    </module>
+    <name>jabberpoint</name>
+    <!-- FIXME change it to the project's website -->
+    <url>http://www.example.com</url>
 
-    <!-- Indent: 4 spaces -->
-    <module name="Indentation">
-        <property name="basicOffset" value="4"/>
-    </module>
-</configuration>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- Add your project dependencies here -->
+        <!-- Example: JUnit for unit testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Add your build plugins here -->
+            <!-- Example: Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Surefire Plugin for testing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Checkstyle Plugin for code quality checks -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Jar Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>your.main.Class</mainClass> <!-- Set your main class here -->
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Install Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+
+            <!-- Maven Deploy Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0-M1</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Development profile -->
+        <profile>
+            <id>development</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <!-- Add dependencies specific to development environment -->
+                <!-- Example: H2 database for local development -->
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <version>1.4.200</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <!-- Testing profile -->
+        <profile>
+            <id>testing</id>
+            <dependencies>
+                <!-- Add dependencies specific to testing environment -->
+                <!-- Example: JUnit for automated testing -->
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>4.13.2</version> <!-- or the latest version available -->
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <!-- Acceptance profile -->
+        <profile>
+            <id>acceptance</id>
+            <dependencies>
+                <!-- Add dependencies specific to acceptance environment -->
+                <!-- Example: Cucumber for acceptance testing -->
+                <dependency>
+                    <groupId>io.cucumber</groupId>
+                    <artifactId>cucumber-java</artifactId>
+                    <version>6.10.4</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <!-- Production profile -->
+        <profile>
+            <id>production</id>
+            <dependencies>
+                <!-- Add dependencies specific to production environment -->
+                <!-- Example: Spring Boot for production application -->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter</artifactId>
+                    <version>2.5.6</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
