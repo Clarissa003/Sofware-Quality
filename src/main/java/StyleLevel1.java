@@ -17,7 +17,7 @@ public class StyleLevel1 extends Style
     @Override
     int getIndent()
     {
-        return 0;
+        return 20;
     }
 
     @Override
