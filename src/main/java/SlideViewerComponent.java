@@ -56,6 +56,13 @@ public class SlideViewerComponent extends JComponent {
 		frame.setTitle(presentation.getTitle());
 	}
 
+	// Notify Presentation
+	public void notifyPresentation() {
+		if (presentation != null) {
+			presentation.update(this.presentation);
+		}
+	}
+
 // draw the slide
 	public void paintComponent(Graphics g) {
 		g.setColor(BGCOLOR);
@@ -70,4 +77,5 @@ public class SlideViewerComponent extends JComponent {
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 		slide.draw(g, area, this);
 	}
+
 }
