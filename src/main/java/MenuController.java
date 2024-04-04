@@ -5,6 +5,7 @@ import java.awt.MenuItem;
 import java.awt.MenuShortcut;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -24,20 +25,8 @@ public class MenuController extends MenuBar {
 	private Presentation presentation; // Commands are given to the presentation
 	
 	private static final long serialVersionUID = 227L;
-	
-	protected static final String ABOUT = "About";
 	protected static final String FILE = "File";
-	protected static final String EXIT = "Exit";
-	protected static final String GOTO = "Go to";
-	protected static final String HELP = "Help";
-	protected static final String NEW = "New";
-	protected static final String NEXT = "Next";
-	protected static final String OPEN = "Open";
 	protected static final String PAGENR = "Page number?";
-	protected static final String PREV = "Prev";
-	protected static final String SAVE = "Save";
-	protected static final String VIEW = "View";
-	
 	protected static final String TESTFILE = "test.xml";
 	protected static final String SAVEFILE = "dump.xml";
 	
@@ -48,83 +37,46 @@ public class MenuController extends MenuBar {
 	public MenuController(Frame frame, Presentation pres) {
 		parent = frame;
 		presentation = pres;
-		MenuItem menuItem;
-		Menu fileMenu = new Menu(FILE);
-		fileMenu.add(menuItem = mkMenuItem(OPEN));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.clear();
-				Accessor xmlAccessor = new XMLAccessor();
-				try {
-					xmlAccessor.loadFile(presentation, TESTFILE);
-					presentation.setSlideNumber(0);
-				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, 
-         			LOADERR, JOptionPane.ERROR_MESSAGE);
-				}
-				parent.repaint();
-			}
-		} );
-		fileMenu.add(menuItem = mkMenuItem(NEW));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.clear();
-				parent.repaint();
-			}
-		});
-		fileMenu.add(menuItem = mkMenuItem(SAVE));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Accessor xmlAccessor = new XMLAccessor();
-				try {
-					xmlAccessor.saveFile(presentation, SAVEFILE);
-				} catch (IOException exc) {
-					JOptionPane.showMessageDialog(parent, IOEX + exc, 
-							SAVEERR, JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
-		fileMenu.addSeparator();
-		fileMenu.add(menuItem = mkMenuItem(EXIT));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.exit(0);
-			}
-		});
-		add(fileMenu);
-		Menu viewMenu = new Menu(VIEW);
-		viewMenu.add(menuItem = mkMenuItem(NEXT));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.nextSlide();
-			}
-		});
-		viewMenu.add(menuItem = mkMenuItem(PREV));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				presentation.prevSlide();
-			}
-		});
-		viewMenu.add(menuItem = mkMenuItem(GOTO));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				String pageNumberStr = JOptionPane.showInputDialog((Object)PAGENR);
-				int pageNumber = Integer.parseInt(pageNumberStr);
-				presentation.setSlideNumber(pageNumber - 1);
-			}
-		});
-		add(viewMenu);
-		Menu helpMenu = new Menu(HELP);
-		helpMenu.add(menuItem = mkMenuItem(ABOUT));
-		menuItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent actionEvent) {
-				AboutBox.show(parent);
-			}
-		});
-		setHelpMenu(helpMenu);		// needed for portability (Motif, etc.).
+		setupMenus();
 	}
 
-// create a menu item
+	private void setupMenus() {
+		MenuItem menuItem;
+
+		Menu fileMenu = new Menu("File");
+		fileMenu.add(createMenuItem("Open", new OpenCommand(presentation), KeyEvent.VK_O));
+		fileMenu.add(createMenuItem("New", new NewCommand(presentation), KeyEvent.VK_N));
+		fileMenu.add(createMenuItem("Save", new SaveCommand(presentation), KeyEvent.VK_S));
+		fileMenu.addSeparator();
+		fileMenu.add(createMenuItem("Exit", new ExitCommand(presentation), KeyEvent.VK_X));
+
+		add(fileMenu);
+
+		Menu viewMenu = new Menu("View");
+		viewMenu.add(createMenuItem("Next", new NextCommand(presentation), KeyEvent.VK_N));
+		viewMenu.add(createMenuItem("Prev", new PrevCommand(presentation), KeyEvent.VK_P));
+		viewMenu.add(createMenuItem("Go to", new GoToCommand(presentation), KeyEvent.VK_G));
+
+		add(viewMenu);
+
+		Menu helpMenu = new Menu("Help");
+		helpMenu.add(createMenuItem("About", new AboutCommand(presentation, parent), KeyEvent.VK_A));
+
+		setHelpMenu(helpMenu);
+	}
+	private MenuItem createMenuItem(String name, final Command command, int keyCode) {
+		MenuItem menuItem = new MenuItem(name);
+		menuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent actionEvent) {
+				command.execute();
+			}
+		});
+		menuItem.setShortcut(new MenuShortcut(keyCode));
+		return menuItem;
+	}
+
+
+	// create a menu item
 	public MenuItem mkMenuItem(String name) {
 		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
 	}
