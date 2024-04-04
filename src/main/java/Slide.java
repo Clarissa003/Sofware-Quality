@@ -63,16 +63,17 @@ public class Slide {
 		float scale = getScale(area);
 	    int y = area.y;
 	// Title is handled separately
-	    SlideItem slideItem = new TextItem(0, getTitle());
-	    Style style = Style.getStyle(slideItem.getLevel());
-	    slideItem.draw(area.x, y, scale, g, style, view);
-	    y += slideItem.getBoundingBox(g, view, scale, style).height;
-	    for (int number=0; number<getSize(); number++) {
-	      slideItem = (SlideItem)getSlideItems().elementAt(number);
-	      style = Style.getStyle(slideItem.getLevel());
-	      slideItem.draw(area.x, y, scale, g, style, view);
-	      y += slideItem.getBoundingBox(g, view, scale, style).height;
-	    }
+		SlideItem slideItem = new TextItem(0, getTitle());
+		Style style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
+		slideItem.draw(area.x, y, scale, g, style, view);
+		y += slideItem.getBoundingBox(g, view, scale, style).height;
+
+		for (int number = 0; number < getSize(); number++) {
+			slideItem = getSlideItem(number);
+			style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
+			slideItem.draw(area.x, y, scale, g, style, view);
+			y += slideItem.getBoundingBox(g, view, scale, style).height;
+		}
 	  }
 
 	// Give the scale for drawing
