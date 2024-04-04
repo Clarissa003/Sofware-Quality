@@ -1,0 +1,27 @@
+name: Security Check
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  security-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 19
+
+      - name: Install security checker
+        run: |
+          npm install -g snyk
+
+      - name: Run OWASP Dependency-Check
+        run: mvn org.owasp:dependency-check-maven:7.1.0:check

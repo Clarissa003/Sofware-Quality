@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -13,19 +14,23 @@ import java.util.ArrayList;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class Presentation {
+public class Presentation implements PresentationObserver {
 	private String showTitle; // title of the presentation
 	private ArrayList<Slide> showList = null; // an ArrayList with Slides
 	private int currentSlideNumber = 0; // the slidenummer of the current Slide
 	private SlideViewerComponent slideViewComponent = null; // the viewcomponent of the Slides
+	private SlideViewerFrame slideViewerFrame;
+	private List<PresentationObserver> observers;
 
 	public Presentation() {
+		observers = new ArrayList<>();
 		slideViewComponent = null;
 		clear();
 	}
 
 	public Presentation(SlideViewerComponent slideViewerComponent) {
 		this.slideViewComponent = slideViewerComponent;
+		observers = new ArrayList<>();
 		clear();
 	}
 
@@ -55,6 +60,7 @@ public class Presentation {
 		currentSlideNumber = number;
 		if (slideViewComponent != null) {
 			slideViewComponent.update(this, getCurrentSlide());
+			notifyObservers();
 		}
 	}
 
@@ -62,7 +68,7 @@ public class Presentation {
 	public void prevSlide() {
 		if (currentSlideNumber > 0) {
 			setSlideNumber(currentSlideNumber - 1);
-	    }
+		}
 	}
 
 	// go to the next slide unless your at the end of the presentation.
@@ -87,8 +93,8 @@ public class Presentation {
 	public Slide getSlide(int number) {
 		if (number < 0 || number >= getSize()){
 			return null;
-	    }
-			return (Slide)showList.get(number);
+		}
+		return (Slide)showList.get(number);
 	}
 
 	// Give the current slide
@@ -96,7 +102,35 @@ public class Presentation {
 		return getSlide(currentSlideNumber);
 	}
 
+	public void executeCommand(Command command) {
+		command.execute();
+	}
+
 	public void exit(int n) {
 		System.exit(n);
+	}
+
+	public void addObserver(PresentationObserver observer) {
+		observers.add(observer);
+	}
+
+	public void removeObserver(PresentationObserver observer) {
+		observers.remove(observer);
+	}
+
+	private void notifyObservers() {
+		for(PresentationObserver observer : observers) {
+			observer.update();
+		}
+	}
+
+	@Override
+	public void update()
+	{
+		if(slideViewComponent != null) {
+			slideViewComponent.update(this, getCurrentSlide());
+		}
+
+		notifyObservers();
 	}
 }

@@ -17,10 +17,13 @@ import java.io.IOException;
  * @version 1.6 2014/05/16 Sylvia Stuurman
  */
 
-public class JabberPoint {
+public class JabberPoint{
 	protected static final String IOERR = "IO Error: ";
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
+
+	private Presentation presentation;
+
 
 	/** Het Main Programma */
 	public static void main(String argv[]) {
@@ -31,6 +34,7 @@ public class JabberPoint {
 		Style styleLevel4 = new StyleLevel4();
 
 		Presentation presentation = new Presentation();
+
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {
 			if (argv.length == 0) { // een demo presentatie
@@ -45,4 +49,5 @@ public class JabberPoint {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
 }
