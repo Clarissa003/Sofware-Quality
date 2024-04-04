@@ -1,4 +1,4 @@
 public interface PresentationObserver
 {
-    void update(Presentation presentation);
+    void update();
 }
