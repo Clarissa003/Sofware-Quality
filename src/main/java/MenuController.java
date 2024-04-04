@@ -63,7 +63,7 @@ public class MenuController extends MenuBar {
 			}
 		});
 
-		setHelpMenu(helpMenu);
+		setHelpMenu(getHelpMenu ()); //modified this to get
 		menuItem.setShortcut(new MenuShortcut(keyCode));
 		return menuItem;
 	}
