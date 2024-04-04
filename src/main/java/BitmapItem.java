@@ -29,7 +29,7 @@ public class BitmapItem extends SlideItem {
 
 // level is equal to item-level; name is the name of the file with the Image
 	public BitmapItem(int level, String name) {
-		super(level);
+		super(Style.getStyleForLevel(level), level);
 		imageName = name;
 		try {
 			bufferedImage = ImageIO.read(new File(imageName));
@@ -51,16 +51,16 @@ public class BitmapItem extends SlideItem {
 
 // give the  bounding box of the image
 	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
-		return new Rectangle((int) (myStyle.indent * scale), 0,
+		return new Rectangle((int) (getStyle(level).getIndent() * scale), 0,
 				(int) (bufferedImage.getWidth(observer) * scale),
-				((int) (myStyle.leading * scale)) + 
+				((int) (getStyle(level).getLeading() * scale)) +
 				(int) (bufferedImage.getHeight(observer) * scale));
 	}
 
 // draw the image
 	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
-		int width = x + (int) (myStyle.indent * scale);
-		int height = y + (int) (myStyle.leading * scale);
+		int width = x + (int) (getStyle(level).getIndent() * scale);
+		int height = y + (int) (getStyle(level).getLeading() * scale);
 		g.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
                 (int) (bufferedImage.getHeight(observer)*scale), observer);
 	}

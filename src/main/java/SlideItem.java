@@ -14,19 +14,20 @@ import java.awt.image.ImageObserver;
 */
 
 public abstract class SlideItem {
-	private int level = 0; // level of the slideitem
+	protected Style style;
+	protected int level;
 
-	public SlideItem(int lev) {
-		level = lev;
-	}
+	public SlideItem(Style style, int level) {
+		this.style = style;
+		this.level = level;
+    }
 
-	public SlideItem() {
-		this(0);
-	}
-
-// Give the level
 	public int getLevel() {
 		return level;
+	}
+
+	public Style getStyle(int level) {
+		return Style.getStyleForLevel(level);
 	}
 
 // Give the bounding box

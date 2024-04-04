@@ -1,7 +1,4 @@
-import java.awt.Rectangle;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.font.TextLayout;
 import java.awt.font.TextAttribute;
 import java.awt.font.LineBreakMeasurer;
@@ -31,7 +28,7 @@ public class TextItem extends SlideItem {
 
 // a textitem of level level, with the text string
 	public TextItem(int level, String string) {
-		super(level);
+		super(Style.getStyleForLevel(level), level);
 		text = string;
 	}
 
@@ -47,8 +44,9 @@ public class TextItem extends SlideItem {
 
 // geef de AttributedString voor het item
 	public AttributedString getAttributedString(Style style, float scale) {
+		Font font = new Font(style.getFontName(), Font.PLAIN, style.getFontSize());
 		AttributedString attrStr = new AttributedString(getText());
-		attrStr.addAttribute(TextAttribute.FONT, style.getFont(scale), 0, text.length());
+		attrStr.addAttribute(TextAttribute.FONT, font, 0, text.length());
 		return attrStr;
 	}
 
@@ -56,7 +54,7 @@ public class TextItem extends SlideItem {
 	public Rectangle getBoundingBox(Graphics g, ImageObserver observer, 
 			float scale, Style myStyle) {
 		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
-		int xsize = 0, ysize = (int) (myStyle.leading * scale);
+		int xsize = 0, ysize = (int) (getStyle(level).getLeading() * scale);
 		Iterator<TextLayout> iterator = layouts.iterator();
 		while (iterator.hasNext()) {
 			TextLayout layout = iterator.next();
@@ -69,20 +67,20 @@ public class TextItem extends SlideItem {
 			}
 			ysize += layout.getLeading() + layout.getDescent();
 		}
-		return new Rectangle((int) (myStyle.indent*scale), 0, xsize, ysize );
+		return new Rectangle((int) (getStyle(level).getIndent() * scale), 0, xsize, ysize );
 	}
 
 // draw the item
-	public void draw(int x, int y, float scale, Graphics g, 
+	public void draw(int x, int y, float scale, Graphics g,
 			Style myStyle, ImageObserver o) {
 		if (text == null || text.length() == 0) {
 			return;
 		}
 		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
-		Point pen = new Point(x + (int)(myStyle.indent * scale), 
-				y + (int) (myStyle.leading * scale));
+		Point pen = new Point(x + (int)(getStyle(level).getIndent() * scale),
+				y + (int) (getStyle(level).getLeading() * scale));
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(myStyle.color);
+		g2d.setColor(getStyle(level).getColor());
 		Iterator<TextLayout> it = layouts.iterator();
 		while (it.hasNext()) {
 			TextLayout layout = it.next();
@@ -98,7 +96,7 @@ public class TextItem extends SlideItem {
     	Graphics2D g2d = (Graphics2D) g;
     	FontRenderContext frc = g2d.getFontRenderContext();
     	LineBreakMeasurer measurer = new LineBreakMeasurer(attrStr.getIterator(), frc);
-    	float wrappingWidth = (Slide.WIDTH - s.indent) * scale;
+    	float wrappingWidth = (Slide.WIDTH - getStyle(level).getIndent()) * scale;
     	while (measurer.getPosition() < getText().length()) {
     		TextLayout layout = measurer.nextLayout(wrappingWidth);
     		layouts.add(layout);
