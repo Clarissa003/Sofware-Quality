@@ -1,48 +1,36 @@
-
-import javax.swing.JOptionPane;
-
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
-
-/** JabberPoint Main Programma
- * <p>This program is distributed under the terms of the accompanying
- * COPYRIGHT.txt file (which is NOT the GNU General Public License).
- * Please read it. Your use of the software constitutes acceptance
- * of the terms in the COPYRIGHT.txt file.</p>
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.1 2002/12/17 Gert Florijn
- * @version 1.2 2003/11/19 Sylvia Stuurman
- * @version 1.3 2004/08/17 Sylvia Stuurman
- * @version 1.4 2007/07/16 Sylvia Stuurman
- * @version 1.5 2010/03/03 Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class JabberPoint{
 	protected static final String IOERR = "IO Error: ";
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
-
 	private Presentation presentation;
 
 
 	/** Het Main Programma */
 	public static void main(String argv[]) {
-		Style styleLevel0 = new StyleLevel0();
-		Style styleLevel1 = new StyleLevel1();
-		Style styleLevel2 = new StyleLevel2();
-		Style styleLevel3 = new StyleLevel3();
-		Style styleLevel4 = new StyleLevel4();
 
 		Presentation presentation = new Presentation();
+		SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
 
 		new SlideViewerFrame(JABVERSION, presentation);
 		try {
-			if (argv.length == 0) { // een demo presentatie
-				Accessor.getDemoAccessor().loadFile(presentation, "");
+			if (argv.length == 0) {
+				buildDemoPresentation(presentation);
 			} else {
-				new XMLAccessor().loadFile(presentation, argv[0]);
+				buildCustomPresentation(presentation, argv[0]);
 			}
 			presentation.setSlideNumber(0);
+
+			// Create MenuController and set it as the menu bar for the frame
+			MenuController menuController = new MenuController(frame, presentation);
+			frame.setMenuBar(menuController);
+
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null,
 					IOERR + ex, JABERR,
@@ -50,4 +38,20 @@ public class JabberPoint{
 		}
 	}
 
+	private static void buildDemoPresentation(Presentation presentation) {
+		SlideDirector slideDirector = new SlideDirector(new SimplePresentationBuilder());
+		SlideDirector slideDirector2 = new SlideDirector (new FancyPresentationBuilder ());
+
+		Slide slide1 = slideDirector.createSlide ("Demo Slide 1",
+				Arrays.asList(new TextItem(1, "This is the content of Demo Slide 1.")));
+		Slide slide2 = slideDirector2.createSlide ("Demo Slide 2",
+				Arrays.asList(new TextItem(1, "This is the content of Demo Slide 2.")));
+
+		presentation.append(slide1);
+		presentation.append(slide2);
+	}
+
+	private static void buildCustomPresentation(Presentation presentation, String xmlFilePath) throws IOException {
+		new XMLAccessor().loadFile(presentation, xmlFilePath);
+	}
 }
