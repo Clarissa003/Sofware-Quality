@@ -1,0 +1,29 @@
+name: Code Analysis
+
+on:
+  push:
+      branches: [ "dev" ]
+  pull_request:
+      branches: [ "dev" ]
+
+jobs:
+  code-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 19
+
+    - name: Build with Maven and Run PMD
+      run: mvn clean verify site -Dmaven.test.skip=true
+
+    - name: Upload PMD report
+      uses: actions/upload-artifact@v2
+      with:
+        name: pmd-report
+        path: target/site/pmd.xml

@@ -5,16 +5,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class JabberPoint {
+public class JabberPoint{
 	protected static final String IOERR = "IO Error: ";
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
+	private Presentation presentation;
 
+
+	/** Het Main Programma */
 	public static void main(String argv[]) {
 		Style.createStyles();
 		Presentation presentation = new Presentation();
 		SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
 
+		new SlideViewerFrame(JABVERSION, presentation);
 		try {
 			if (argv.length == 0) {
 				buildDemoPresentation(presentation);

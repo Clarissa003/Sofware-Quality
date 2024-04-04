@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 
 public class SlideViewerFrame extends JFrame {
 	private static final long serialVersionUID = 3227L;
+	private Presentation presentation;
 
 	private static final String JABTITLE = "Jabberpoint 1.6 - OU";
 	public final static int WIDTH = 1200;
@@ -23,6 +24,7 @@ public class SlideViewerFrame extends JFrame {
 
 	public SlideViewerFrame(String title, Presentation presentation) {
 		super(title);
+		this.presentation = presentation;
 		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);
 		presentation.setShowView(slideViewerComponent);
 		setupWindow(slideViewerComponent, presentation);
@@ -42,5 +44,9 @@ public class SlideViewerFrame extends JFrame {
 		setMenuBar(new MenuController(this, presentation));	// add another controller
 		setSize(new Dimension(WIDTH, HEIGHT)); // Same sizes as Slide has.
 		setVisible(true);
+	}
+
+	private void notifyPresentation() {
+		presentation.update();
 	}
 }
