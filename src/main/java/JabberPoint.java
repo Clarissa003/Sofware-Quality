@@ -1,23 +1,19 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-public class JabberPoint{
+public class JabberPoint {
 	protected static final String IOERR = "IO Error: ";
 	protected static final String JABERR = "Jabberpoint Error ";
 	protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 	private Presentation presentation;
 
-
 	/** Het Main Programma */
 	public static void main(String argv[]) {
-
 		Presentation presentation = new Presentation();
 		SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
-		
+
 		try {
 			if (argv.length == 0) {
 				buildDemoPresentation(presentation);
@@ -29,11 +25,10 @@ public class JabberPoint{
 			// Create MenuController and set it as the menu bar for the frame
 			MenuController menuController = new MenuController(frame, presentation);
 			frame.setMenuBar(menuController);
+			menuController.showCreateSlideDialog ();
 
 		} catch (IOException ex) {
-			JOptionPane.showMessageDialog(null,
-					IOERR + ex, JABERR,
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -41,14 +36,10 @@ public class JabberPoint{
 		SlideDirector slideDirector = new SlideDirector(new SimplePresentationBuilder());
 		SlideDirector slideDirector2 = new SlideDirector(new FancyPresentationBuilder());
 
-		List<SlideItem> slide1Items = new ArrayList<>();
-		slide1Items.add(new TextItem(1, "This is the content of Demo Slide 1."));
-
-		List<SlideItem> slide2Items = new ArrayList<>();
-		slide2Items.add(new TextItem(1, "This is the content of Demo Slide 2."));
-
-		Slide slide1 = slideDirector.createSlide("Demo Slide 1", slide1Items);
-		Slide slide2 = slideDirector2.createSlide("Demo Slide 2", slide2Items);
+		Slide slide1 = slideDirector.createSlide("Demo Slide 1",
+				Arrays.asList(new TextItem(1, "This is the content of Demo Slide 1.")));
+		Slide slide2 = slideDirector2.createSlide("Demo Slide 2",
+				Arrays.asList(new TextItem(1, "This is the content of Demo Slide 2.")));
 
 		presentation.append(slide1);
 		presentation.append(slide2);

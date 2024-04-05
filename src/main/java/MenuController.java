@@ -6,22 +6,20 @@ import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import javax.swing.JOptionPane;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuController extends MenuBar {	
+public class MenuController extends MenuBar {
 	private Frame parent; // the frame, only used as parent for the Dialogs
 	private Presentation presentation; // Commands are given to the presentation
-	
+
 	private static final long serialVersionUID = 227L;
 	protected static final String FILE = "File";
 	protected static final String PAGENR = "Page number?";
 	protected static final String TESTFILE = "test.xml";
 	protected static final String SAVEFILE = "dump.xml";
-	
+
 	protected static final String IOEX = "IO Exception: ";
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
@@ -33,7 +31,6 @@ public class MenuController extends MenuBar {
 	}
 
 	private void setupMenus() {
-		MenuItem menuItem;
 		Menu fileMenu = new Menu("File");
 		fileMenu.add(createMenuItem("Open", new OpenCommand(presentation), KeyEvent.VK_O));
 		fileMenu.add(createMenuItem("New", new NewCommand(presentation, this), KeyEvent.VK_N));
@@ -55,6 +52,7 @@ public class MenuController extends MenuBar {
 
 		setHelpMenu(helpMenu);
 	}
+
 	private MenuItem createMenuItem(String name, final Command command, int keyCode) {
 		MenuItem menuItem = new MenuItem(name);
 		menuItem.addActionListener(new ActionListener() {
@@ -66,13 +64,7 @@ public class MenuController extends MenuBar {
 		return menuItem;
 	}
 
-
-	// create a menu item
-	public MenuItem mkMenuItem(String name) {
-		return new MenuItem(name, new MenuShortcut(name.charAt(0)));
-	}
-
-	private void showCreateSlideDialog() {
+	public void showCreateSlideDialog() {
 		// Prompt for slide title
 		String title = JOptionPane.showInputDialog(parent, "Enter slide title:");
 		if (title == null || title.trim().isEmpty()) {
@@ -93,21 +85,28 @@ public class MenuController extends MenuBar {
 		List<SlideItem> slideItems = new ArrayList<>();
 		slideItems.add(new TextItem(1, allContent.toString().trim()));
 
-		// Create a slide based on user input
-		Slide slide;
-		if (shouldCreateFancySlide()) {
-			SlideDirector slideDirector = new SlideDirector(new FancyPresentationBuilder());
-			slide = slideDirector.createSlide(title, slideItems);
+		// Determine if the user wants a fancy slide
+		boolean createFancySlide = shouldCreateFancySlide();
+
+		// Create the new slide using the appropriate SlideDirector
+		SlideDirector slideDirector;
+		if (createFancySlide) {
+			slideDirector = new SlideDirector(new FancyPresentationBuilder());
 		} else {
-			SlideDirector slideDirector = new SlideDirector(new SimplePresentationBuilder());
-			slide = slideDirector.createSlide(title, slideItems);
+			slideDirector = new SlideDirector(new SimplePresentationBuilder());
 		}
 
-		// Append the slide to the presentation
-		presentation.append(slide);
+		// Create the slide with the provided title and content
+		Slide newSlide = slideDirector.createSlide(title, slideItems);
 
-		// Repaint the frame
-		parent.repaint();
+		// Add the new slide to the existing presentation
+		presentation.append(newSlide);
+
+		// Set the new slide as the current slide
+		presentation.setSlideNumber(presentation.getSize() - 1); // Index of last slide
+
+		// Notify observers (like SlideViewerComponent) that the presentation has changed
+		presentation.notifyObservers();
 	}
 
 	private boolean shouldCreateFancySlide() {

@@ -118,7 +118,7 @@ public class Presentation implements PresentationObserver {
 		observers.remove(observer);
 	}
 
-	private void notifyObservers() {
+	public void notifyObservers() {
 		for(PresentationObserver observer : observers) {
 			observer.update();
 		}

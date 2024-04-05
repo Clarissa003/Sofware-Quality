@@ -7,7 +7,7 @@ public class SlideDirector {
         this.builder = builder;
     }
 
-    public Slide createSlide(String title, List<SlideItem> slideItems) {
+    public Slide createSlide(String title, List<? extends SlideItem> slideItems) {
         builder.createTitle(title);
         for (SlideItem item : slideItems) {
             builder.createSlideItem(item);
