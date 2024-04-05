@@ -23,6 +23,7 @@ public class MenuController extends MenuBar {
 	protected static final String IOEX = "IO Exception: ";
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
+	private boolean newSlideRequested = false;
 
 	public MenuController(Frame frame, Presentation pres) {
 		parent = frame;
@@ -64,10 +65,27 @@ public class MenuController extends MenuBar {
 		return menuItem;
 	}
 
+	public boolean isSlideCreationRequested() {
+		return newSlideRequested;
+	}
+
+	public void clearSlideCreationRequest() {
+		newSlideRequested = false;
+	}
+
+	public void setNewSlideRequested(boolean requested) {
+		newSlideRequested = requested;
+	}
+
 	public void showCreateSlideDialog() {
+		if (!newSlideRequested) {
+			return; // New slide not requested, do nothing
+		}
+
 		// Prompt for slide title
 		String title = JOptionPane.showInputDialog(parent, "Enter slide title:");
 		if (title == null || title.trim().isEmpty()) {
+			clearSlideCreationRequest();
 			return; // Cancelled or empty title, do nothing
 		}
 
@@ -102,11 +120,11 @@ public class MenuController extends MenuBar {
 		// Add the new slide to the existing presentation
 		presentation.append(newSlide);
 
-		// Set the new slide as the current slide
-		presentation.setSlideNumber(presentation.getSize() - 1); // Index of last slide
-
 		// Notify observers (like SlideViewerComponent) that the presentation has changed
 		presentation.notifyObservers();
+
+		// Clear the slide creation request
+		clearSlideCreationRequest();
 	}
 
 	private boolean shouldCreateFancySlide() {
