@@ -1,8 +1,10 @@
 public class NewCommand extends Command
 {
-    public NewCommand(Presentation presentation)
+    private MenuController menuController;
+    public NewCommand(Presentation presentation, MenuController menuController)
     {
         super(presentation);
+        this.menuController = menuController;
     }
 
     @Override

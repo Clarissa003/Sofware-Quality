@@ -36,7 +36,7 @@ public class MenuController extends MenuBar {
 		MenuItem menuItem;
 		Menu fileMenu = new Menu("File");
 		fileMenu.add(createMenuItem("Open", new OpenCommand(presentation), KeyEvent.VK_O));
-		fileMenu.add(createMenuItem("New", new NewCommand(presentation), KeyEvent.VK_N));
+		fileMenu.add(createMenuItem("New", new NewCommand(presentation, this), KeyEvent.VK_N));
 		fileMenu.add(createMenuItem("Save", new SaveCommand(presentation), KeyEvent.VK_S));
 		fileMenu.addSeparator();
 		fileMenu.add(createMenuItem("Exit", new ExitCommand(presentation), KeyEvent.VK_X));
@@ -62,8 +62,6 @@ public class MenuController extends MenuBar {
 				command.execute();
 			}
 		});
-
-		setHelpMenu(getHelpMenu ()); //modified this to get
 		menuItem.setShortcut(new MenuShortcut(keyCode));
 		return menuItem;
 	}

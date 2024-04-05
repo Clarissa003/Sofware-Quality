@@ -17,8 +17,7 @@ public class JabberPoint{
 
 		Presentation presentation = new Presentation();
 		SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
-
-		new SlideViewerFrame(JABVERSION, presentation);
+		
 		try {
 			if (argv.length == 0) {
 				buildDemoPresentation(presentation);
