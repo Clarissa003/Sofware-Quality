@@ -44,8 +44,8 @@ public class SlideViewerComponentTest
         // Verify that the slide field is set correctly
         assertSame (slide, slideViewerComponent.slide);
     }
-}
-   /* @Test
+
+    @Test
     void testSlideViewerComponent() {
         // Create some slides for testing
         Slide slide1 = new Slide();
@@ -62,15 +62,18 @@ public class SlideViewerComponentTest
         presentation.append(slide1);
         presentation.append(slide2);
 
-        // Create a JFrame for testing
-        JFrame frame = new JFrame("Slide Viewer Test");
+        // Mock the JFrame
+        JFrame frame = Mockito.mock(JFrame.class);
+
+        // Mock the Graphics object
+        Graphics graphics = Mockito.mock(Graphics.class);
+        Mockito.when(frame.getGraphics()).thenReturn(graphics);
+
+        // Create the SlideViewerComponent
         SlideViewerComponent component = new SlideViewerComponent(presentation, frame);
 
         // Set up the JFrame
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(component);
-        frame.pack();
-        frame.setVisible(true);
+        Mockito.when(frame.getTitle()).thenReturn("Presentation Title");
 
         // Call update to trigger repaint and set the title
         component.update(presentation, slide1);
@@ -80,16 +83,9 @@ public class SlideViewerComponentTest
 
         // We cannot verify the exact content of the graphics in a unit test,
         // but we can verify that the component was painted without exceptions
-        assertDoesNotThrow(() -> {
-            Graphics g = component.getGraphics();
-            component.paintComponent(g);
-        });
-
-        // Close the frame after testing
-        frame.setVisible(false);
-        frame.dispose();
-    }*/
-
+        assertDoesNotThrow(() -> component.paintComponent(graphics));
+    }
+}
    /* @Test
     void testPaintComponent() {
         // Create a mock Graphics object
