@@ -25,6 +25,7 @@ public class MenuController extends MenuBar {
 	protected static final String LOADERR = "Load Error";
 	protected static final String SAVEERR = "Save Error";
 	private boolean newSlideRequested = false;
+	private JOptionPane optionPane;
 
 	public MenuController(Frame frame, Presentation pres, Accessor accessor) {
 		parent = frame;
@@ -32,6 +33,11 @@ public class MenuController extends MenuBar {
 		this.accessor = accessor;
 		setupMenus();
 	}
+
+	public void setOptionPane(JOptionPane optionPane) {
+		this.optionPane = optionPane;
+	}
+
 
 	private void setupMenus() {
 		Menu fileMenu = new Menu("File");

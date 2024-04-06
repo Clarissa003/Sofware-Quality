@@ -1,3 +1,6 @@
-AboutCommandTest.class
+NewCommandTest.class
+PrevCommandTest.class
 KeyControllerTest.class
 ExitCommandTest.class
+MenuControllerTest.class
+NextCommandTest.class

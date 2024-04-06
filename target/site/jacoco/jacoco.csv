@@ -21,7 +21,7 @@ jabberpoint,default,NextCommand,0,8,0,0,0,4,0,2,0,2
 jabberpoint,default,BitmapItem,106,24,0,0,14,7,6,1,6,1
 jabberpoint,default,JabberPoint,60,0,4,0,16,0,4,0,2,0
 jabberpoint,default,ExitCommand,0,9,0,0,0,4,0,2,0,2
-jabberpoint,default,MenuController,300,0,18,0,61,0,17,0,8,0
+jabberpoint,default,MenuController,304,0,18,0,63,0,18,0,9,0
 jabberpoint,default,SimplePresentationBuilder,30,0,0,0,10,0,5,0,5,0
 jabberpoint,default,Presentation,172,9,14,0,53,3,26,1,19,1
 jabberpoint,default,PrevCommand,0,8,0,0,0,4,0,2,0,2
