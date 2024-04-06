@@ -14,6 +14,7 @@ public class MenuController extends MenuBar {
 	private Frame parent; // the frame, only used as parent for the Dialogs
 	private Presentation presentation; // Commands are given to the presentation
 
+	private Accessor accessor;
 	private static final long serialVersionUID = 227L;
 	protected static final String FILE = "File";
 	protected static final String PAGENR = "Page number?";
@@ -25,9 +26,10 @@ public class MenuController extends MenuBar {
 	protected static final String SAVEERR = "Save Error";
 	private boolean newSlideRequested = false;
 
-	public MenuController(Frame frame, Presentation pres) {
+	public MenuController(Frame frame, Presentation pres, Accessor accessor) {
 		parent = frame;
 		presentation = pres;
+		this.accessor = accessor;
 		setupMenus();
 	}
 
@@ -42,7 +44,7 @@ public class MenuController extends MenuBar {
 		add(fileMenu);
 
 		Menu viewMenu = new Menu("View");
-		viewMenu.add(createMenuItem("Next", new NextCommand(presentation), KeyEvent.VK_N));
+		viewMenu.add(createMenuItem("Next", new NextCommand(presentation), KeyEvent.VK_T));
 		viewMenu.add(createMenuItem("Prev", new PrevCommand(presentation), KeyEvent.VK_P));
 		viewMenu.add(createMenuItem("Go to", new GoToCommand(presentation), KeyEvent.VK_G));
 

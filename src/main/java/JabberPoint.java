@@ -19,7 +19,7 @@ public class JabberPoint {
 			presentation.setSlideNumber(0);
 
 			// Create MenuController and set it as the menu bar for the frame
-			MenuController menuController = new MenuController(frame, presentation);
+			MenuController menuController = new MenuController(frame, presentation, Accessor.getDemoAccessor());
 			frame.setMenuBar(menuController);
 
 			// Show the frame

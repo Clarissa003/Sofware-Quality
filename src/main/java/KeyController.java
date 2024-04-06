@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
 
@@ -16,16 +17,32 @@ public class KeyController extends KeyAdapter {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
 			case '+':
+			case KeyEvent.VK_T:
 				command = instantiateCommand("NextCommand");
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
 			case '-':
+			case KeyEvent.VK_P:
 				command = instantiateCommand("PrevCommand");
 				break;
-			case 'q':
-			case 'Q':
+			case KeyEvent.VK_O:
+				command = instantiateCommand("OpenCommand");
+				break;
+			case KeyEvent.VK_N:
+				command = instantiateCommand("NewCommand");
+				break;
+			case KeyEvent.VK_S:
+				command = instantiateCommand("SaveCommand");
+				break;
+			case KeyEvent.VK_X:
 				command = instantiateCommand("ExitCommand");
+				break;
+			case KeyEvent.VK_G:
+				command = instantiateCommand("GoToCommand");
+				break;
+			case KeyEvent.VK_A:
+				command = instantiateCommand("AboutCommand");
 				break;
 			default:
 				break;
