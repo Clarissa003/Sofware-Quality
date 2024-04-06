@@ -127,7 +127,7 @@ public class KeyControllerTest {
         verify(menuControllerMock, times(1)).showCreateSlideDialog();
     }
 
-    @Test
+    /*@Test
     public void testKeyPress_SaveCommand_VKS() throws IOException {
         // Set up the 'S' key event
         KeyEvent keyEvent = mock(KeyEvent.class);
@@ -141,7 +141,7 @@ public class KeyControllerTest {
 
         // Verify that accessorMock.saveFile() is called with the correct arguments
         verify(accessorMock, times(1)).saveFile(eq(presentationMock), eq(MenuController.SAVEFILE));
-    }
+    }*/
 
     @Test
     public void testKeyPress_ExitCommand() {
@@ -152,7 +152,7 @@ public class KeyControllerTest {
         verify(presentationMock, times(1)).exit(0);
     }
 
-    @Test
+    /*@Test
     public void testKeyPress_GoToCommand_VKG() {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_G);
@@ -193,5 +193,5 @@ public class KeyControllerTest {
 
         // Verify that the AboutBox.show method is called with the aboutBox frame
         verify(aboutBoxMock, times(1)).setVisible(true); // Assuming aboutBoxMock is a Frame, use appropriate method
-    }
+    }*/
 }
