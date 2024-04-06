@@ -1,0 +1,35 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+jabberpoint,default,AboutBox,9,0,0,0,3,0,2,0,2,0
+jabberpoint,default,NewCommand,0,18,0,0,0,7,0,2,0,2
+jabberpoint,default,SlideViewerComponent,123,0,6,0,33,0,9,0,6,0
+jabberpoint,default,TextItem,271,9,16,0,49,3,16,1,8,1
+jabberpoint,default,Accessor,4,3,0,0,1,2,1,1,1,1
+jabberpoint,default,StyleLevel0,13,0,0,0,6,0,6,0,6,0
+jabberpoint,default,SlideViewerFrame,63,0,0,0,16,0,3,0,3,0
+jabberpoint,default,StyleLevel1,10,3,0,0,5,1,5,1,5,1
+jabberpoint,default,StyleLevel2,10,3,0,0,5,1,5,1,5,1
+jabberpoint,default,GoToCommand,17,0,0,0,6,0,2,0,2,0
+jabberpoint,default,SlideDirector,31,0,2,0,8,0,3,0,2,0
+jabberpoint,default,SaveCommand,23,0,0,0,8,0,2,0,2,0
+jabberpoint,default,OpenCommand,8,22,0,0,2,8,0,2,0,2
+jabberpoint,default,Slide,145,17,8,0,28,7,12,3,8,3
+jabberpoint,default,MenuController.new ActionListener() {...},24,0,2,0,5,0,3,0,2,0
+jabberpoint,default,DemoPresentation,133,0,0,0,35,0,3,0,3,0
+jabberpoint,default,Style,10,21,2,4,2,6,2,5,0,2
+jabberpoint,default,KeyController,25,57,6,5,11,18,6,6,0,3
+jabberpoint,default,NextCommand,0,8,0,0,0,4,0,2,0,2
+jabberpoint,default,BitmapItem,106,24,0,0,14,7,6,1,6,1
+jabberpoint,default,JabberPoint,60,0,4,0,16,0,4,0,2,0
+jabberpoint,default,ExitCommand,0,9,0,0,0,4,0,2,0,2
+jabberpoint,default,MenuController,300,0,18,0,61,0,17,0,8,0
+jabberpoint,default,SimplePresentationBuilder,30,0,0,0,10,0,5,0,5,0
+jabberpoint,default,Presentation,172,9,14,0,53,3,26,1,19,1
+jabberpoint,default,PrevCommand,0,8,0,0,0,4,0,2,0,2
+jabberpoint,default,SlideItem,6,9,0,0,2,4,2,1,2,1
+jabberpoint,default,StyleLevel3,10,3,0,0,5,1,5,1,5,1
+jabberpoint,default,StyleLevel4,10,3,0,0,5,1,5,1,5,1
+jabberpoint,default,XMLAccessor,134,140,10,8,36,34,7,7,1,4
+jabberpoint,default,AboutCommand,11,0,0,0,5,0,2,0,2,0
+jabberpoint,default,FancyPresentationBuilder,34,0,0,0,10,0,5,0,5,0
+jabberpoint,default,Command,0,6,0,0,0,3,0,1,0,1
+jabberpoint,default,SlideViewerFrame.new WindowAdapter() {...},9,0,0,0,3,0,2,0,2,0

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">MenuController.java</span></div><h1>MenuController.java</h1><pre class="source lang-java linenums">import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.MenuShortcut;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MenuController extends MenuBar {
+	private Frame parent; // the frame, only used as parent for the Dialogs
+	private Presentation presentation; // Commands are given to the presentation
+
+	private Accessor accessor;
+	private static final long serialVersionUID = 227L;
+	protected static final String FILE = &quot;File&quot;;
+	protected static final String PAGENR = &quot;Page number?&quot;;
+	protected static final String TESTFILE = &quot;test.xml&quot;;
+	protected static final String SAVEFILE = &quot;dump.xml&quot;;
+
+	protected static final String IOEX = &quot;IO Exception: &quot;;
+	protected static final String LOADERR = &quot;Load Error&quot;;
+	protected static final String SAVEERR = &quot;Save Error&quot;;
+<span class="nc" id="L27">	private boolean newSlideRequested = false;</span>
+
+<span class="nc" id="L29">	public MenuController(Frame frame, Presentation pres, Accessor accessor) {</span>
+<span class="nc" id="L30">		parent = frame;</span>
+<span class="nc" id="L31">		presentation = pres;</span>
+<span class="nc" id="L32">		this.accessor = accessor;</span>
+<span class="nc" id="L33">		setupMenus();</span>
+<span class="nc" id="L34">	}</span>
+
+	private void setupMenus() {
+<span class="nc" id="L37">		Menu fileMenu = new Menu(&quot;File&quot;);</span>
+<span class="nc" id="L38">		fileMenu.add(createMenuItem(&quot;Open&quot;, new OpenCommand(presentation), KeyEvent.VK_O));</span>
+<span class="nc" id="L39">		fileMenu.add(createMenuItem(&quot;New&quot;, new NewCommand(presentation, this), KeyEvent.VK_N));</span>
+<span class="nc" id="L40">		fileMenu.add(createMenuItem(&quot;Save&quot;, new SaveCommand(presentation), KeyEvent.VK_S));</span>
+<span class="nc" id="L41">		fileMenu.addSeparator();</span>
+<span class="nc" id="L42">		fileMenu.add(createMenuItem(&quot;Exit&quot;, new ExitCommand(presentation), KeyEvent.VK_X));</span>
+
+<span class="nc" id="L44">		add(fileMenu);</span>
+
+<span class="nc" id="L46">		Menu viewMenu = new Menu(&quot;View&quot;);</span>
+<span class="nc" id="L47">		viewMenu.add(createMenuItem(&quot;Next&quot;, new NextCommand(presentation), KeyEvent.VK_T));</span>
+<span class="nc" id="L48">		viewMenu.add(createMenuItem(&quot;Prev&quot;, new PrevCommand(presentation), KeyEvent.VK_P));</span>
+<span class="nc" id="L49">		viewMenu.add(createMenuItem(&quot;Go to&quot;, new GoToCommand(presentation), KeyEvent.VK_G));</span>
+
+<span class="nc" id="L51">		add(viewMenu);</span>
+
+<span class="nc" id="L53">		Menu helpMenu = new Menu(&quot;Help&quot;);</span>
+<span class="nc" id="L54">		helpMenu.add(createMenuItem(&quot;About&quot;, new AboutCommand(presentation, parent), KeyEvent.VK_A));</span>
+
+<span class="nc" id="L56">		setHelpMenu(helpMenu);</span>
+<span class="nc" id="L57">	}</span>
+
+	private MenuItem createMenuItem(final String name, final Command command, int keyCode) {
+<span class="nc" id="L60">		MenuItem menuItem = new MenuItem(name);</span>
+<span class="nc" id="L61">		menuItem.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent actionEvent) {
+<span class="nc" id="L63">				command.execute();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">				if (name.equals(&quot;New&quot;)) {</span>
+<span class="nc" id="L65">					showCreateSlideDialog(); // Show create slide dialog only if &quot;New&quot; button is clicked</span>
+				}
+<span class="nc" id="L67">			}</span>
+		});
+<span class="nc" id="L69">		menuItem.setShortcut(new MenuShortcut(keyCode));</span>
+<span class="nc" id="L70">		return menuItem;</span>
+	}
+
+	public boolean isSlideCreationRequested() {
+<span class="nc" id="L74">		return newSlideRequested;</span>
+	}
+
+	public void clearSlideCreationRequest() {
+<span class="nc" id="L78">		newSlideRequested = false;</span>
+<span class="nc" id="L79">	}</span>
+
+	public void setNewSlideRequested(boolean requested) {
+<span class="nc" id="L82">		newSlideRequested = requested;</span>
+<span class="nc" id="L83">	}</span>
+
+	public void showCreateSlideDialog() {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (!newSlideRequested) {</span>
+<span class="nc" id="L87">			return; // New slide not requested, do nothing</span>
+		}
+
+		// Prompt for slide title
+<span class="nc" id="L91">		String title = JOptionPane.showInputDialog(parent, &quot;Enter slide title:&quot;);</span>
+<span class="nc" id="L92">		System.out.println(&quot;Title entered: &quot; + title);</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">		if (title == null || title.trim().isEmpty()) {</span>
+<span class="nc" id="L94">			clearSlideCreationRequest();</span>
+<span class="nc" id="L95">			return; // Cancelled or empty title, do nothing</span>
+		}
+
+		// Prompt for slide content
+		String content;
+<span class="nc" id="L100">		StringBuilder allContent = new StringBuilder();</span>
+		do {
+<span class="nc" id="L102">			content = JOptionPane.showInputDialog(parent, &quot;Enter slide content (empty line to finish):&quot;);</span>
+<span class="nc" id="L103">			System.out.println(&quot;Content entered: &quot; + content);</span>
+<span class="nc bnc" id="L104" title="All 4 branches missed.">			if (content != null &amp;&amp; !content.isEmpty()) {</span>
+<span class="nc" id="L105">				allContent.append(content).append(&quot;\n&quot;);</span>
+			}
+<span class="nc bnc" id="L107" title="All 4 branches missed.">		} while (content != null &amp;&amp; !content.isEmpty());</span>
+
+		// Create a list with just the text content as SlideItem
+<span class="nc" id="L110">		List&lt;SlideItem&gt; slideItems = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L111">		slideItems.add(new TextItem(1, allContent.toString().trim()));</span>
+
+		// Determine if the user wants a fancy slide
+<span class="nc" id="L114">		boolean createFancySlide = shouldCreateFancySlide();</span>
+
+		// Create the new slide using the appropriate SlideDirector
+		SlideDirector slideDirector;
+<span class="nc bnc" id="L118" title="All 2 branches missed.">		if (createFancySlide) {</span>
+<span class="nc" id="L119">			slideDirector = new SlideDirector(Slide.newBuilder(true));</span>
+		} else {
+<span class="nc" id="L121">			slideDirector = new SlideDirector(Slide.newBuilder(false));</span>
+		}
+
+		// Create the slide with the provided title and content
+<span class="nc" id="L125">		Slide newSlide = slideDirector.createSlide(title, slideItems);</span>
+<span class="nc" id="L126">		System.out.println(&quot;New slide created: &quot; + newSlide.getTitle());</span>
+
+		// Add the new slide to the existing presentation
+<span class="nc" id="L129">		presentation.append(newSlide);</span>
+<span class="nc" id="L130">		System.out.println(&quot;Slide appended to presentation&quot;);</span>
+
+		// Notify observers (like SlideViewerComponent) that the presentation has changed
+<span class="nc" id="L133">		presentation.notifyObservers();</span>
+<span class="nc" id="L134">		System.out.println(&quot;Observers notified&quot;);</span>
+
+		// Clear the slide creation request
+<span class="nc" id="L137">		clearSlideCreationRequest();</span>
+<span class="nc" id="L138">	}</span>
+
+	private boolean shouldCreateFancySlide() {
+<span class="nc" id="L141">		int choice = JOptionPane.showConfirmDialog(parent, &quot;Create Fancy Slide?&quot;, &quot;Choose Slide Type&quot;,</span>
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+<span class="nc bnc" id="L143" title="All 2 branches missed.">		return choice == JOptionPane.YES_OPTION;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

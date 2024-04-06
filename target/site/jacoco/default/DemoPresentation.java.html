@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DemoPresentation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">DemoPresentation.java</span></div><h1>DemoPresentation.java</h1><pre class="source lang-java linenums">
+/** A built in demo-presentation
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.1 2002/12/17 Gert Florijn
+ * @version 1.2 2003/11/19 Sylvia Stuurman
+ * @version 1.3 2004/08/17 Sylvia Stuurman
+ * @version 1.4 2007/07/16 Sylvia Stuurman
+ * @version 1.5 2010/03/03 Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+ */
+
+<span class="nc" id="L12">class DemoPresentation extends Accessor {</span>
+
+	public void loadFile(Presentation presentation, String unusedFilename) {
+<span class="nc" id="L15">		presentation.setTitle(&quot;Demo Presentation&quot;);</span>
+		Slide slide;
+<span class="nc" id="L17">		slide = new Slide();</span>
+<span class="nc" id="L18">		slide.setTitle(&quot;JabberPoint&quot;);</span>
+<span class="nc" id="L19">		slide.append(1, &quot;The Java Presentation Tool&quot;);</span>
+<span class="nc" id="L20">		slide.append(2, &quot;Copyright (c) 1996-2000: Ian Darwin&quot;);</span>
+<span class="nc" id="L21">		slide.append(2, &quot;Copyright (c) 2000-now:&quot;);</span>
+<span class="nc" id="L22">		slide.append(2, &quot;Gert Florijn andn Sylvia Stuurman&quot;);</span>
+<span class="nc" id="L23">		slide.append(4, &quot;Starting JabberPoint without a filename&quot;);</span>
+<span class="nc" id="L24">		slide.append(4, &quot;shows this presentation&quot;);</span>
+<span class="nc" id="L25">		slide.append(1, &quot;Navigate:&quot;);</span>
+<span class="nc" id="L26">		slide.append(3, &quot;Next slide: PgDn or Enter&quot;);</span>
+<span class="nc" id="L27">		slide.append(3, &quot;Previous slide: PgUp or up-arrow&quot;);</span>
+<span class="nc" id="L28">		slide.append(3, &quot;Quit: q or Q&quot;);</span>
+<span class="nc" id="L29">		presentation.append(slide);</span>
+
+<span class="nc" id="L31">		slide = new Slide();</span>
+<span class="nc" id="L32">		slide.setTitle(&quot;Demonstration of levels and stijlen&quot;);</span>
+<span class="nc" id="L33">		slide.append(1, &quot;Level 1&quot;);</span>
+<span class="nc" id="L34">		slide.append(2, &quot;Level 2&quot;);</span>
+<span class="nc" id="L35">		slide.append(1, &quot;Again level 1&quot;);</span>
+<span class="nc" id="L36">		slide.append(1, &quot;Level 1 has style number 1&quot;);</span>
+<span class="nc" id="L37">		slide.append(2, &quot;Level 2 has style number  2&quot;);</span>
+<span class="nc" id="L38">		slide.append(3, &quot;This is how level 3 looks like&quot;);</span>
+<span class="nc" id="L39">		slide.append(4, &quot;And this is level 4&quot;);</span>
+<span class="nc" id="L40">		presentation.append(slide);</span>
+
+<span class="nc" id="L42">		slide = new Slide();</span>
+<span class="nc" id="L43">		slide.setTitle(&quot;The third slide&quot;);</span>
+<span class="nc" id="L44">		slide.append(1, &quot;To open a new presentation,&quot;);</span>
+<span class="nc" id="L45">		slide.append(2, &quot;use File-&gt;Open from the menu.&quot;);</span>
+<span class="nc" id="L46">		slide.append(1, &quot; &quot;);</span>
+<span class="nc" id="L47">		slide.append(1, &quot;This is the end of the presentation.&quot;);</span>
+<span class="nc" id="L48">		slide.append(new BitmapItem(1, &quot;JabberPoint.jpg&quot;));</span>
+<span class="nc" id="L49">		presentation.append(slide);</span>
+<span class="nc" id="L50">	}</span>
+
+	public void saveFile(Presentation presentation, String unusedFilename) {
+<span class="nc" id="L53">		throw new IllegalStateException(&quot;Save As-&gt;Demo! called&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
