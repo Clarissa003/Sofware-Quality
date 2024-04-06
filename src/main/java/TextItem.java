@@ -37,6 +37,11 @@ public class TextItem extends SlideItem {
 		this(0, EMPTYTEXT);
 	}
 
+	@Override
+	public String getContent() {
+		return text;
+	}
+
 // give the text
 	public String getText() {
 		return text == null ? "" : text;
@@ -76,6 +81,7 @@ public class TextItem extends SlideItem {
 		if (text == null || text.length() == 0) {
 			return;
 		}
+		System.out.println("Drawing text item: " + text);
 		List<TextLayout> layouts = getLayouts(g, myStyle, scale);
 		Point pen = new Point(x + (int)(getStyle(level).getIndent() * scale),
 				y + (int) (getStyle(level).getLeading() * scale));

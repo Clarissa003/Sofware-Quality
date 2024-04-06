@@ -16,12 +16,12 @@ public class KeyController extends KeyAdapter {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_ENTER:
 			case '+':
-				command = instantiateCommand("NextPageCommand");
+				command = instantiateCommand("NextCommand");
 				break;
 			case KeyEvent.VK_PAGE_UP:
 			case KeyEvent.VK_UP:
 			case '-':
-				command = instantiateCommand("PrevPageCommand");
+				command = instantiateCommand("PrevCommand");
 				break;
 			case 'q':
 			case 'Q':

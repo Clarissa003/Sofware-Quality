@@ -11,6 +11,7 @@ public class NewCommand extends Command
     public void execute()
     {
         presentation.clear();
+        menuController.setNewSlideRequested(true);
         menuController.showCreateSlideDialog();
     }
 }

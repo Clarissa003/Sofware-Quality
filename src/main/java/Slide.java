@@ -62,18 +62,41 @@ public class Slide {
 	public void draw(Graphics g, Rectangle area, ImageObserver view) {
 		float scale = getScale(area);
 	    int y = area.y;
+		System.out.println("Drawing slide: " + getTitle());
 	// Title is handled separately
-		SlideItem slideItem = new TextItem(0, getTitle());
-		Style style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
+		//SlideItem slideItem = new TextItem(0, getTitle());
+		/*Style style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
 		slideItem.draw(area.x, y, scale, g, style, view);
-		y += slideItem.getBoundingBox(g, view, scale, style).height;
+		y += slideItem.getBoundingBox(g, view, scale, style).height;*/
+
+		SlideItem titleItem = new TextItem(0, getTitle());
+		Style titleStyle = titleItem.getStyle(titleItem.getLevel());
+		if (titleStyle != null) {
+			titleItem.draw(area.x, y, scale, g, titleStyle, view);
+			y += titleItem.getBoundingBox(g, view, scale, titleStyle).height;
+		} else {
+			System.err.println("Error: Title style is null"); // Error handling
+		}
 
 		for (int number = 0; number < getSize(); number++) {
+			SlideItem slideItem = getSlideItem(number);
+			Style style = slideItem.getStyle(slideItem.getLevel());
+			if (style != null) {
+				System.out.println("Drawing slide item " + number + ": " + slideItem.getContent());
+				slideItem.draw(area.x, y, scale, g, style, view);
+				y += slideItem.getBoundingBox(g, view, scale, style).height;
+			} else {
+				System.err.println("Error: Style is null for slide item " + number); // Error handling
+			}
+		}
+
+
+		/*for (int number = 0; number < getSize(); number++) {
 			slideItem = getSlideItem(number);
 			style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
 			slideItem.draw(area.x, y, scale, g, style, view);
 			y += slideItem.getBoundingBox(g, view, scale, style).height;
-		}
+		}*/
 	  }
 
 	// Give the scale for drawing
@@ -81,7 +104,11 @@ public class Slide {
 		return Math.min(((float)area.width) / ((float)WIDTH), ((float)area.height) / ((float)HEIGHT));
 	}
 
-	public static SlideBuilder newBuilder() {
-		return new SimplePresentationBuilder ();
+	public static SlideBuilder newBuilder(boolean isFancy) {
+		if (isFancy) {
+			return new FancyPresentationBuilder();
+		} else {
+			return new SimplePresentationBuilder();
+		}
 	}
 }

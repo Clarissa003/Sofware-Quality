@@ -54,11 +54,14 @@ public class MenuController extends MenuBar {
 		setHelpMenu(helpMenu);
 	}
 
-	private MenuItem createMenuItem(String name, final Command command, int keyCode) {
+	private MenuItem createMenuItem(final String name, final Command command, int keyCode) {
 		MenuItem menuItem = new MenuItem(name);
 		menuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
 				command.execute();
+				if (name.equals("New")) {
+					showCreateSlideDialog(); // Show create slide dialog only if "New" button is clicked
+				}
 			}
 		});
 		menuItem.setShortcut(new MenuShortcut(keyCode));
@@ -84,6 +87,7 @@ public class MenuController extends MenuBar {
 
 		// Prompt for slide title
 		String title = JOptionPane.showInputDialog(parent, "Enter slide title:");
+		System.out.println("Title entered: " + title);
 		if (title == null || title.trim().isEmpty()) {
 			clearSlideCreationRequest();
 			return; // Cancelled or empty title, do nothing
@@ -94,6 +98,7 @@ public class MenuController extends MenuBar {
 		StringBuilder allContent = new StringBuilder();
 		do {
 			content = JOptionPane.showInputDialog(parent, "Enter slide content (empty line to finish):");
+			System.out.println("Content entered: " + content);
 			if (content != null && !content.isEmpty()) {
 				allContent.append(content).append("\n");
 			}
@@ -109,19 +114,22 @@ public class MenuController extends MenuBar {
 		// Create the new slide using the appropriate SlideDirector
 		SlideDirector slideDirector;
 		if (createFancySlide) {
-			slideDirector = new SlideDirector(new FancyPresentationBuilder());
+			slideDirector = new SlideDirector(Slide.newBuilder(true));
 		} else {
-			slideDirector = new SlideDirector(new SimplePresentationBuilder());
+			slideDirector = new SlideDirector(Slide.newBuilder(false));
 		}
 
 		// Create the slide with the provided title and content
 		Slide newSlide = slideDirector.createSlide(title, slideItems);
+		System.out.println("New slide created: " + newSlide.getTitle());
 
 		// Add the new slide to the existing presentation
 		presentation.append(newSlide);
+		System.out.println("Slide appended to presentation");
 
 		// Notify observers (like SlideViewerComponent) that the presentation has changed
 		presentation.notifyObservers();
+		System.out.println("Observers notified");
 
 		// Clear the slide creation request
 		clearSlideCreationRequest();

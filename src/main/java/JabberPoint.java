@@ -34,6 +34,6 @@ public class JabberPoint {
 			JOptionPane.showMessageDialog(null,
 					IOERR + ex, JABERR,
 					JOptionPane.ERROR_MESSAGE);
-		}
+			}
 	}
 }
