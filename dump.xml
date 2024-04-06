@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE presentation SYSTEM "jabberpoint.dtd">
 <presentation>
-<showtitle>null</showtitle>
+<showtitle>XML-Based Presentation for Jabberpoint</showtitle>
+<slide>
+<title>Fancy:Hey</title>
+<item kind="text" level="1">yo</item>
+</slide>
 </presentation>

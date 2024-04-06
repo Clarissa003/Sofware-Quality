@@ -85,6 +85,7 @@ public class SlideViewerComponentTest {
         frame.setVisible(false);
         frame.dispose();
     }
+
    /* @Test
     void testPaintComponent() {
         // Create a mock Graphics object
