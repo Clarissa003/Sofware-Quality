@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version> <!-- Use the latest version available -->
+            <version>4.4.0</version> <!-- Use the latest version available -->
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -53,7 +53,6 @@
 
 
     <build>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
                 <plugin>
@@ -90,10 +89,10 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.7.1</version>
                 </plugin>
-                <plugin>
+                <!--<plugin>
                     <artifactId>maven-project-info-reports-plugin</artifactId>
                     <version>3.0.0</version>
-                </plugin>
+                </plugin>-->
                 <!-- Exec Maven Plugin -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -133,6 +132,5 @@
                     </executions>
                 </plugin>
             </plugins>
-        </pluginManagement>
     </build>
 </project>
