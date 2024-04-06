@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="KeyControllerTest" time="0.759" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="StyleLevel1Test" time="0.015" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -59,14 +59,14 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testKeyPress_NextCommand_VKEnter" classname="KeyControllerTest" time="0.485"/>
-  <testcase name="testKeyPress_OpenCommand_VKO" classname="KeyControllerTest" time="0.23"/>
-  <testcase name="testKeyPress_NextCommand_PageDown" classname="KeyControllerTest" time="0"/>
-  <testcase name="testKeyPress_NextCommand_VKDown" classname="KeyControllerTest" time="0"/>
-  <testcase name="testKeyPress_PrevCommand_VKP" classname="KeyControllerTest" time="0.01"/>
-  <testcase name="testKeyPress_NewCommand_VKN" classname="KeyControllerTest" time="0.009"/>
-  <testcase name="testKeyPress_ExitCommand" classname="KeyControllerTest" time="0.003"/>
-  <testcase name="testKeyPress_PrevCommand_VKUp" classname="KeyControllerTest" time="0.005"/>
-  <testcase name="testKeyPress_PrevCommand_PageUP" classname="KeyControllerTest" time="0.003"/>
-  <testcase name="testKeyPress_NextCommand_VKT" classname="KeyControllerTest" time="0.003"/>
+  <testcase name="testGetFontSize_ExpectNotEqual" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetIndent_ExpectNotEqual" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetFontName_ExpectEquals" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetFontSize_ExpectEquals" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetLeading_ExpectEquals" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetColor_ExpectNotEqual" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetIndent_ExpectEquals" classname="StyleLevel1Test" time="0.001"/>
+  <testcase name="testGetColor_ExpectEquals" classname="StyleLevel1Test" time="0.001"/>
+  <testcase name="testGetLeading_ExpectNotEqual" classname="StyleLevel1Test" time="0"/>
+  <testcase name="testGetFontName_ExpectNotEqual" classname="StyleLevel1Test" time="0.001"/>
 </testsuite>

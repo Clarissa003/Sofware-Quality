@@ -1,6 +1,12 @@
+StyleLevel4Test.class
+ExitCommandTest.class
+StyleLevel0Test.class
+StyleLevel1Test.class
+StyleLevel3Test.class
+MenuControllerTest.class
+NextCommandTest.class
 NewCommandTest.class
 PrevCommandTest.class
 KeyControllerTest.class
-ExitCommandTest.class
-MenuControllerTest.class
-NextCommandTest.class
+StyleTest.class
+StyleLevel2Test.class
