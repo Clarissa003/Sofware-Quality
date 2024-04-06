@@ -19,49 +19,49 @@ import javax.swing.JFrame;
 
 public class SlideViewerComponent extends JComponent {
 
-	private Slide slide; // current slide
-<span class="nc" id="L23">	private Font labelFont = null; // font for labels</span>
-<span class="nc" id="L24">	private Presentation presentation = null; // the presentation</span>
-<span class="nc" id="L25">	private JFrame frame = null;</span>
+	Slide slide; // current slide
+<span class="fc" id="L23">	private Font labelFont = null; // font for labels</span>
+<span class="fc" id="L24">	private Presentation presentation = null; // the presentation</span>
+<span class="fc" id="L25">	private JFrame frame = null;</span>
 
 	private static final long serialVersionUID = 227L;
 
-<span class="nc" id="L29">	private static final Color BGCOLOR = Color.white;</span>
-<span class="nc" id="L30">	private static final Color COLOR = Color.black;</span>
+<span class="fc" id="L29">	private static final Color BGCOLOR = Color.white;</span>
+<span class="fc" id="L30">	private static final Color COLOR = Color.black;</span>
 	private static final String FONTNAME = &quot;Dialog&quot;;
 	private static final int FONTSTYLE = Font.BOLD;
 	private static final int FONTHEIGHT = 10;
 	private static final int XPOS = 1100;
 	private static final int YPOS = 20;
 
-<span class="nc" id="L37">	public SlideViewerComponent(Presentation presentation, JFrame frame) {</span>
-<span class="nc" id="L38">		setBackground(BGCOLOR);</span>
-<span class="nc" id="L39">		this.presentation = presentation;</span>
-<span class="nc" id="L40">		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);</span>
-<span class="nc" id="L41">		this.frame = frame;</span>
-<span class="nc" id="L42">	}</span>
+<span class="fc" id="L37">	public SlideViewerComponent(Presentation presentation, JFrame frame) {</span>
+<span class="fc" id="L38">		setBackground(BGCOLOR);</span>
+<span class="fc" id="L39">		this.presentation = presentation;</span>
+<span class="fc" id="L40">		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);</span>
+<span class="fc" id="L41">		this.frame = frame;</span>
+<span class="fc" id="L42">	}</span>
 
 	public Dimension getPreferredSize() {
-<span class="nc" id="L45">		return new Dimension(Slide.WIDTH, Slide.HEIGHT);</span>
+<span class="fc" id="L45">		return new Dimension(Slide.WIDTH, Slide.HEIGHT);</span>
 	}
 
 	public void update(Presentation presentation, Slide data) {
-<span class="nc bnc" id="L49" title="All 2 branches missed.">		if (data == null) {</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if (data == null) {</span>
 <span class="nc" id="L50">			repaint();</span>
 <span class="nc" id="L51">			return;</span>
 		}
-<span class="nc" id="L53">		this.presentation = presentation;</span>
-<span class="nc" id="L54">		this.slide = data;</span>
-<span class="nc" id="L55">		repaint();</span>
-<span class="nc" id="L56">		frame.setTitle(presentation.getTitle());</span>
-<span class="nc" id="L57">	}</span>
+<span class="fc" id="L53">		this.presentation = presentation;</span>
+<span class="fc" id="L54">		this.slide = data;</span>
+<span class="fc" id="L55">		repaint();</span>
+<span class="fc" id="L56">		frame.setTitle(presentation.getTitle());</span>
+<span class="fc" id="L57">	}</span>
 
 	// draw the slide
 	public void paintComponent(Graphics g) {
-<span class="nc" id="L61">		g.setColor(BGCOLOR);</span>
-<span class="nc" id="L62">		g.fillRect(0, 0, getSize().width, getSize().height);</span>
-<span class="nc bnc" id="L63" title="All 4 branches missed.">		if (presentation.getSlideNumber() &lt; 0 || slide == null) {</span>
-<span class="nc" id="L64">			return;</span>
+<span class="fc" id="L61">		g.setColor(BGCOLOR);</span>
+<span class="fc" id="L62">		g.fillRect(0, 0, getSize().width, getSize().height);</span>
+<span class="pc bpc" id="L63" title="3 of 4 branches missed.">		if (presentation.getSlideNumber() &lt; 0 || slide == null) {</span>
+<span class="fc" id="L64">			return;</span>
 		}
 <span class="nc" id="L66">		g.setFont(labelFont);</span>
 <span class="nc" id="L67">		g.setColor(COLOR);</span>

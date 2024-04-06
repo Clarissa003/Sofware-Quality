@@ -1,5 +1,5 @@
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 import javax.swing.*;
@@ -24,7 +24,7 @@ public class MenuControllerTest {
     private MenuController menuController;
     private JOptionPane optionPaneMock;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         frameMock = mock(Frame.class);
         presentationMock = mock(Presentation.class);

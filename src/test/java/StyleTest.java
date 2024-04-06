@@ -1,8 +1,8 @@
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
 import java.awt.Color;
 
 public class StyleTest {

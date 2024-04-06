@@ -23,28 +23,28 @@ public class SlideViewerFrame extends JFrame {
 	public final static int HEIGHT = 800;
 
 	public SlideViewerFrame(String title, Presentation presentation) {
-<span class="nc" id="L26">		super(title);</span>
-<span class="nc" id="L27">		this.presentation = presentation;</span>
-<span class="nc" id="L28">		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);</span>
-<span class="nc" id="L29">		presentation.setShowView(slideViewerComponent);</span>
-<span class="nc" id="L30">		setupWindow(slideViewerComponent, presentation);</span>
-<span class="nc" id="L31">	}</span>
+<span class="fc" id="L26">		super(title);</span>
+<span class="fc" id="L27">		this.presentation = presentation;</span>
+<span class="fc" id="L28">		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);</span>
+<span class="fc" id="L29">		presentation.setShowView(slideViewerComponent);</span>
+<span class="fc" id="L30">		setupWindow(slideViewerComponent, presentation);</span>
+<span class="fc" id="L31">	}</span>
 
 	// Setup GUI
 	public void setupWindow(SlideViewerComponent
 			slideViewerComponent, Presentation presentation) {
-<span class="nc" id="L36">		setTitle(JABTITLE);</span>
-<span class="nc" id="L37">		addWindowListener(new WindowAdapter() {</span>
+<span class="fc" id="L36">		setTitle(JABTITLE);</span>
+<span class="fc" id="L37">		addWindowListener(new WindowAdapter() {</span>
 			public void windowClosing(WindowEvent e) {
 <span class="nc" id="L39">				System.exit(0);</span>
 <span class="nc" id="L40">			}</span>
 		});
-<span class="nc" id="L42">		getContentPane().add(slideViewerComponent);</span>
-<span class="nc" id="L43">		addKeyListener(new KeyController(presentation)); // add a controller</span>
-<span class="nc" id="L44">		setMenuBar(new MenuController(this, presentation, Accessor.getDemoAccessor()));	// add another controller</span>
-<span class="nc" id="L45">		setSize(new Dimension(WIDTH, HEIGHT)); // Same sizes as Slide has.</span>
-<span class="nc" id="L46">		setVisible(true);</span>
-<span class="nc" id="L47">	}</span>
+<span class="fc" id="L42">		getContentPane().add(slideViewerComponent);</span>
+<span class="fc" id="L43">		addKeyListener(new KeyController(presentation)); // add a controller</span>
+<span class="fc" id="L44">		setMenuBar(new MenuController(this, presentation, Accessor.getDemoAccessor()));	// add another controller</span>
+<span class="fc" id="L45">		setSize(new Dimension(WIDTH, HEIGHT)); // Same sizes as Slide has.</span>
+<span class="fc" id="L46">		setVisible(true);</span>
+<span class="fc" id="L47">	}</span>
 
 	private void notifyPresentation() {
 <span class="nc" id="L50">		presentation.update();</span>

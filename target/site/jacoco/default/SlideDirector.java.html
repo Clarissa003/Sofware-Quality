@@ -3,16 +3,18 @@
 public class SlideDirector {
     private SlideBuilder builder;
 
-<span class="nc" id="L6">    public SlideDirector(SlideBuilder builder) {</span>
-<span class="nc" id="L7">        this.builder = builder;</span>
-<span class="nc" id="L8">    }</span>
+<span class="fc" id="L6">    public SlideDirector(SlideBuilder builder) {</span>
+<span class="fc" id="L7">        this.builder = builder;</span>
+<span class="fc" id="L8">    }</span>
 
     public Slide createSlide(String title, List&lt;? extends SlideItem&gt; slideItems) {
-<span class="nc" id="L11">        builder.createTitle(title);</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        for (SlideItem item : slideItems) {</span>
-<span class="nc" id="L13">            builder.createSlideItem(item);</span>
-<span class="nc" id="L14">        }</span>
-<span class="nc" id="L15">        return builder.build();</span>
+<span class="fc" id="L11">        builder.createTitle(title);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        if (slideItems != null) {</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">            for (SlideItem item : slideItems) {</span>
+<span class="fc" id="L14">                builder.createSlideItem(item);</span>
+<span class="fc" id="L15">            }</span>
+        }
+<span class="fc" id="L17">        return builder.build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

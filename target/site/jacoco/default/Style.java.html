@@ -17,9 +17,9 @@ import java.awt.Font;
 <span class="fc" id="L17">public abstract class Style {</span>
 	// Factory method to create concrete style instances based on the level
 	public static Style getStyleForLevel(int level) {
-<span class="pc bpc" id="L20" title="2 of 6 branches missed.">		switch (level) {</span>
+<span class="fc bfc" id="L20" title="All 6 branches covered.">		switch (level) {</span>
 			case 0:
-<span class="nc" id="L22">				return new StyleLevel0();</span>
+<span class="fc" id="L22">				return new StyleLevel0();</span>
 			case 1:
 <span class="fc" id="L24">				return new StyleLevel1();</span>
 			case 2:
@@ -29,7 +29,7 @@ import java.awt.Font;
 			case 4:
 <span class="fc" id="L30">				return new StyleLevel4();</span>
 			default:
-<span class="nc" id="L32">				throw new IllegalArgumentException(&quot;Invalid style level: &quot; + level);</span>
+<span class="fc" id="L32">				throw new IllegalArgumentException(&quot;Invalid style level: &quot; + level);</span>
 		}
 	}
 
