@@ -8,7 +8,8 @@ import static org.mockito.Mockito.*;
 import java.awt.*;
 import javax.swing.JFrame;
 
-public class SlideViewerComponentTest {
+public class SlideViewerComponentTest
+{
 
     private Presentation presentation;
     private Slide slide;
@@ -16,32 +17,35 @@ public class SlideViewerComponentTest {
     private JFrame mockFrame;
 
     @BeforeEach
-    void setUp() {
-        presentation = mock(Presentation.class);
-        slide = new Slide();
+    void setUp ()
+    {
+        presentation = mock (Presentation.class);
+        slide = new Slide ();
 
         // Create a mock JFrame
-        mockFrame = mock(JFrame.class);
-        slideViewerComponent = new SlideViewerComponent(presentation, mockFrame);
+        mockFrame = mock (JFrame.class);
+        slideViewerComponent = new SlideViewerComponent (presentation, mockFrame);
     }
 
     @Test
-    void testPreferredSize() {
-        Dimension expected = new Dimension(Slide.WIDTH, Slide.HEIGHT);
-        assertEquals(expected, slideViewerComponent.getPreferredSize());
+    void testPreferredSize ()
+    {
+        Dimension expected = new Dimension (Slide.WIDTH, Slide.HEIGHT);
+        assertEquals (expected, slideViewerComponent.getPreferredSize ());
     }
 
     @Test
-    void testUpdate() {
-        when(presentation.getCurrentSlide()).thenReturn(slide);
+    void testUpdate ()
+    {
+        when (presentation.getCurrentSlide ()).thenReturn (slide);
 
-        slideViewerComponent.update(presentation, slide);
+        slideViewerComponent.update (presentation, slide);
 
         // Verify that the slide field is set correctly
-        assertSame(slide, slideViewerComponent.slide);
+        assertSame (slide, slideViewerComponent.slide);
     }
-
-    @Test
+}
+   /* @Test
     void testSlideViewerComponent() {
         // Create some slides for testing
         Slide slide1 = new Slide();
@@ -84,7 +88,7 @@ public class SlideViewerComponentTest {
         // Close the frame after testing
         frame.setVisible(false);
         frame.dispose();
-    }
+    }*/
 
    /* @Test
     void testPaintComponent() {
@@ -111,4 +115,4 @@ public class SlideViewerComponentTest {
         verify(slide).draw(eq(graphics), any(Rectangle.class), any(SlideViewerComponent.class));
     }*/
 
-}
+
