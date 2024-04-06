@@ -9,8 +9,10 @@ public class SlideDirector {
 
     public Slide createSlide(String title, List<? extends SlideItem> slideItems) {
         builder.createTitle(title);
-        for (SlideItem item : slideItems) {
-            builder.createSlideItem(item);
+        if (slideItems != null) {
+            for (SlideItem item : slideItems) {
+                builder.createSlideItem(item);
+            }
         }
         return builder.build();
     }
