@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SlideDirectorTest {
+public class SlideDirectorTest
+{
 
     private SlideBuilder builder;
     private SlideDirector director;
 
     @BeforeEach
-    public void setup() {
+    public void setup()
+    {
         builder = new SimplePresentationBuilder(); // Use any builder here for testing
         director = new SlideDirector(builder);
     }
 
     @Test
-    public void testSlideDirector() {
+    public void testSlideDirector()
+    {
         List<SlideItem> slideItems = new ArrayList<>();
         slideItems.add(new TextItem(1, "Text 1"));
         slideItems.add(new TextItem(2, "Text 2"));
@@ -26,26 +29,27 @@ public class SlideDirectorTest {
         assertEquals("Test Slide", slide.getTitle());
         assertEquals(2, slide.getSize());
 
-        // Check the contents of the slide items
         assertEquals("Text 1", slide.getSlideItem(0).getContent());
         assertEquals("Text 2", slide.getSlideItem(1).getContent());
     }
 
     @Test
-    public void testSlideDirectorWithEmptyList() {
+    public void testSlideDirectorWithEmptyList()
+    {
         List<SlideItem> emptySlideItems = new ArrayList<>();
 
         Slide slide = director.createSlide("Empty Slide", emptySlideItems);
 
         assertEquals("Empty Slide", slide.getTitle());
-        assertEquals(0, slide.getSize()); // Empty list should result in an empty slide
+        assertEquals(0, slide.getSize());
     }
 
     @Test
-    public void testSlideDirectorWithNullList() {
+    public void testSlideDirectorWithNullList()
+    {
         Slide slide = director.createSlide("Null Slide", null);
 
         assertEquals("Null Slide", slide.getTitle());
-        assertEquals(0, slide.getSize()); // Null list should result in an empty slide
+        assertEquals(0, slide.getSize());
     }
 }
