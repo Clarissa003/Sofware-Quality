@@ -7,10 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Jabberpoint-IT" />
+        <module name="jabberpoint" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Jabberpoint-IT" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

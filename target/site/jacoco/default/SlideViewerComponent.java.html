@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SlideViewerComponent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jabberpoint</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">SlideViewerComponent.java</span></div><h1>SlideViewerComponent.java</h1><pre class="source lang-java linenums">import java.awt.Color;
+import java.awt.Font;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+
+
+/** &lt;p&gt;SlideViewerComponent is a graphical component that can show slides.&lt;/p&gt;
+ * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
+ * @version 1.1 2002/12/17 Gert Florijn
+ * @version 1.2 2003/11/19 Sylvia Stuurman
+ * @version 1.3 2004/08/17 Sylvia Stuurman
+ * @version 1.4 2007/07/16 Sylvia Stuurman
+ * @version 1.5 2010/03/03 Sylvia Stuurman
+ * @version 1.6 2014/05/16 Sylvia Stuurman
+ */
+
+public class SlideViewerComponent extends JComponent {
+
+	Slide slide; // current slide
+<span class="fc" id="L23">	private Font labelFont = null; // font for labels</span>
+<span class="fc" id="L24">	private Presentation presentation = null; // the presentation</span>
+<span class="fc" id="L25">	private JFrame frame = null;</span>
+
+	private static final long serialVersionUID = 227L;
+
+<span class="fc" id="L29">	private static final Color BGCOLOR = Color.white;</span>
+<span class="fc" id="L30">	private static final Color COLOR = Color.black;</span>
+	private static final String FONTNAME = &quot;Dialog&quot;;
+	private static final int FONTSTYLE = Font.BOLD;
+	private static final int FONTHEIGHT = 10;
+	private static final int XPOS = 1100;
+	private static final int YPOS = 20;
+
+<span class="fc" id="L37">	public SlideViewerComponent(Presentation presentation, JFrame frame) {</span>
+<span class="fc" id="L38">		setBackground(BGCOLOR);</span>
+<span class="fc" id="L39">		this.presentation = presentation;</span>
+<span class="fc" id="L40">		labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);</span>
+<span class="fc" id="L41">		this.frame = frame;</span>
+<span class="fc" id="L42">	}</span>
+
+	public Dimension getPreferredSize() {
+<span class="fc" id="L45">		return new Dimension(Slide.WIDTH, Slide.HEIGHT);</span>
+	}
+
+	public void update(Presentation presentation, Slide data) {
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		if (data == null) {</span>
+<span class="nc" id="L50">			repaint();</span>
+<span class="nc" id="L51">			return;</span>
+		}
+<span class="fc" id="L53">		this.presentation = presentation;</span>
+<span class="fc" id="L54">		this.slide = data;</span>
+<span class="fc" id="L55">		repaint();</span>
+<span class="fc" id="L56">		frame.setTitle(presentation.getTitle());</span>
+<span class="fc" id="L57">	}</span>
+
+	// draw the slide
+	public void paintComponent(Graphics g) {
+<span class="fc" id="L61">		g.setColor(BGCOLOR);</span>
+<span class="fc" id="L62">		g.fillRect(0, 0, getSize().width, getSize().height);</span>
+<span class="pc bpc" id="L63" title="3 of 4 branches missed.">		if (presentation.getSlideNumber() &lt; 0 || slide == null) {</span>
+<span class="fc" id="L64">			return;</span>
+		}
+<span class="nc" id="L66">		g.setFont(labelFont);</span>
+<span class="nc" id="L67">		g.setColor(COLOR);</span>
+<span class="nc" id="L68">		g.drawString(&quot;Slide &quot; + (1 + presentation.getSlideNumber()) + &quot; of &quot; +</span>
+<span class="nc" id="L69">				presentation.getSize(), XPOS, YPOS);</span>
+<span class="nc" id="L70">		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));</span>
+<span class="nc" id="L71">		slide.draw(g, area, this);</span>
+<span class="nc" id="L72">	}</span>
+
+	private void notifyPresentation() {
+<span class="nc" id="L75">		presentation.update();</span>
+<span class="nc" id="L76">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
