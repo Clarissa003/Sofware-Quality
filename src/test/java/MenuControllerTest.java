@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +17,9 @@ public class MenuControllerTest {
     private MenuController menuController;
     private JOptionPane optionPaneMock;
 
-    @BeforeEach
+    @Before
     public void setUp() {
+        //System.setProperty("java.awt.headless", "true");
         frameMock = mock(Frame.class);
         presentationMock = mock(Presentation.class);
         accessorMock = mock(Accessor.class);
