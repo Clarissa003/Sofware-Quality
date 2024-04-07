@@ -1,3 +1,9 @@
+import com.nhlstenden.menuController.Accessor;
+import com.nhlstenden.menuController.MenuController;
+import com.nhlstenden.menuController.XMLAccessor;
+import com.nhlstenden.presentation.Presentation;
+import com.nhlstenden.presentation.SlideViewerFrame;
+
 import javax.swing.*;
 import java.io.IOException;
 
@@ -24,7 +30,7 @@ public class JabberPoint
             }
             presentation.setSlideNumber(0);
 
-            // Create MenuController and set it as the menu bar for the frame
+            // Create com.nhlstenden.menuController.MenuController and set it as the menu bar for the frame
             MenuController menuController = new MenuController(frame, presentation, Accessor.getDemoAccessor ());
             frame.setMenuBar(menuController);
 
