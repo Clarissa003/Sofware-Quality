@@ -27,8 +27,8 @@ public class SlideViewerFrame extends JFrame {
 <span class="fc" id="L27">		this.presentation = presentation;</span>
 <span class="fc" id="L28">		SlideViewerComponent slideViewerComponent = new SlideViewerComponent(presentation, this);</span>
 <span class="fc" id="L29">		presentation.setShowView(slideViewerComponent);</span>
-<span class="fc" id="L30">		setupWindow(slideViewerComponent, presentation);</span>
-<span class="fc" id="L31">	}</span>
+<span class="nc" id="L30">		setupWindow(slideViewerComponent, presentation);</span>
+<span class="nc" id="L31">	}</span>
 
 	// Setup GUI
 	public void setupWindow(SlideViewerComponent
@@ -43,8 +43,8 @@ public class SlideViewerFrame extends JFrame {
 <span class="fc" id="L43">		addKeyListener(new KeyController(presentation)); // add a controller</span>
 <span class="fc" id="L44">		setMenuBar(new MenuController(this, presentation, Accessor.getDemoAccessor()));	// add another controller</span>
 <span class="fc" id="L45">		setSize(new Dimension(WIDTH, HEIGHT)); // Same sizes as Slide has.</span>
-<span class="fc" id="L46">		setVisible(true);</span>
-<span class="fc" id="L47">	}</span>
+<span class="nc" id="L46">		setVisible(true);</span>
+<span class="nc" id="L47">	}</span>
 
 	private void notifyPresentation() {
 <span class="nc" id="L50">		presentation.update();</span>

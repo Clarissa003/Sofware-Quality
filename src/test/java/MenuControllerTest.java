@@ -1,20 +1,14 @@
+import org.junit.Before;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
-import java.util.Arrays;
-import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import javax.swing.JOptionPane;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class MenuControllerTest {
 
@@ -60,39 +54,40 @@ public class MenuControllerTest {
 
     }*/
 
+    //@org.junit.Test
     @Test
     public void testIsSlideCreationRequested_ExpectFalse() {
-        assertFalse(menuController.isSlideCreationRequested());
+        Assertions.assertFalse(menuController.isSlideCreationRequested());
     }
 
     @Test
     public void testIsSlideCreationRequested_ExpectTrue() {
         menuController.setNewSlideRequested(true);
-        assertTrue(menuController.isSlideCreationRequested());
+        Assertions.assertTrue(menuController.isSlideCreationRequested());
     }
 
     @Test
     public void testClearSlideCreationRequest_ExpectTrue() {
         menuController.setNewSlideRequested(true);
-        assertTrue(menuController.isSlideCreationRequested());
+        Assertions.assertTrue(menuController.isSlideCreationRequested());
     }
 
     @Test
     public void testClearSlideCreationRequest_ExpectFalse() {
         menuController.clearSlideCreationRequest();
-        assertFalse(menuController.isSlideCreationRequested());
+        Assertions.assertFalse(menuController.isSlideCreationRequested());
     }
 
     @Test
     public void testSetNewSlideRequested_ExpectFalse() {
-        assertFalse(menuController.isSlideCreationRequested());
+        Assertions.assertFalse(menuController.isSlideCreationRequested());
     }
 
     @Test
     public void testSetNewSlideRequested_ExpectTrue() {
-        assertFalse(menuController.isSlideCreationRequested());
+        Assertions.assertFalse(menuController.isSlideCreationRequested());
         menuController.setNewSlideRequested(true);
-        assertTrue(menuController.isSlideCreationRequested());
+        Assertions.assertTrue(menuController.isSlideCreationRequested());
     }
 
     /*@Test

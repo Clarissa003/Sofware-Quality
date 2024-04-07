@@ -5,7 +5,7 @@ jabberpoint,default,SlideViewerComponent,49,74,4,2,11,22,4,5,1,5
 jabberpoint,default,TextItem,268,12,16,0,48,4,15,2,7,2
 jabberpoint,default,Accessor,0,7,0,0,0,3,0,2,0,2
 jabberpoint,default,StyleLevel0,0,13,0,0,0,6,0,6,0,6
-jabberpoint,default,SlideViewerFrame,4,59,0,0,2,14,1,2,1,2
+jabberpoint,default,SlideViewerFrame,13,50,0,0,6,10,1,2,1,2
 jabberpoint,default,StyleLevel1,0,13,0,0,0,6,0,6,0,6
 jabberpoint,default,StyleLevel2,0,13,0,0,0,6,0,6,0,6
 jabberpoint,default,GoToCommand,13,4,0,0,4,2,1,1,1,1
