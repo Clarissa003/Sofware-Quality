@@ -4,6 +4,7 @@ StyleLevel0Test.class
 PresentationTest.class
 StyleLevel1Test.class
 NewCommandTest.class
+SlideItemTest.class
 SlideDirectorTest.class
 StyleLevel4Test.class
 SimplePresentationBuilderTest.class

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="PresentationTest" time="1.237" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="PresentationTest" time="0.751" tests="11" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\alici\AppData\Local\Temp\surefire6353381307730896566\surefirebooter10704348488850343271.jar C:\Users\alici\AppData\Local\Temp\surefire6353381307730896566 2024-04-07T10-29-51_926-jvmRun1 surefire8215209776452767249tmp surefire_08706013997749156916tmp"/>
+    <property name="sun.java.command" value="C:\Users\alici\AppData\Local\Temp\surefire10235748768155626658\surefirebooter11501958066703483392.jar C:\Users\alici\AppData\Local\Temp\surefire10235748768155626658 2024-04-07T12-00-20_423-jvmRun1 surefire13776319009124819651tmp surefire_012363086904261039512tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\alici\OneDrive\Escritorio\Period3\SoftwareQuality\Sofware-Quality\target\test-classes;C:\Users\alici\OneDrive\Escritorio\Period3\SoftwareQuality\Sofware-Quality\target\classes;C:\Users\alici\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\alici\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\alici\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.1\junit-jupiter-5.8.1.jar;C:\Users\alici\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\alici\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\alici\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\alici\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\alici\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.1\junit-jupiter-params-5.8.1.jar;C:\Users\alici\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\alici\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\alici\.m2\repository\org\mockito\mockito-core\4.4.0\mockito-core-4.4.0.jar;C:\Users\alici\.m2\repository\net\bytebuddy\byte-buddy\1.12.8\byte-buddy-1.12.8.jar;C:\Users\alici\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.8\byte-buddy-agent-1.12.8.jar;C:\Users\alici\.m2\repository\org\objenesis\objenesis\3.2\objenesis-3.2.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-module-junit4\2.0.9\powermock-module-junit4-2.0.9.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-module-junit4-common\2.0.9\powermock-module-junit4-common-2.0.9.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-reflect\2.0.9\powermock-reflect-2.0.9.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-core\2.0.9\powermock-core-2.0.9.jar;C:\Users\alici\.m2\repository\org\javassist\javassist\3.27.0-GA\javassist-3.27.0-GA.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-api-mockito2\2.0.9\powermock-api-mockito2-2.0.9.jar;C:\Users\alici\.m2\repository\org\powermock\powermock-api-support\2.0.9\powermock-api-support-2.0.9.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\alici\AppData\Local\Temp\surefire6353381307730896566\surefirebooter10704348488850343271.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\alici\AppData\Local\Temp\surefire10235748768155626658\surefirebooter11501958066703483392.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.2+13-LTS"/>
@@ -59,15 +59,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testNotifyObservers" classname="PresentationTest" time="1.178"/>
-  <testcase name="testObservers" classname="PresentationTest" time="0.009"/>
-  <testcase name="testGetCurrentSlide" classname="PresentationTest" time="0.003"/>
-  <testcase name="testClear" classname="PresentationTest" time="0.006"/>
-  <testcase name="testAppendAndGetSlide" classname="PresentationTest" time="0.008"/>
-  <testcase name="testGetSize" classname="PresentationTest" time="0.002"/>
-  <testcase name="testSetSlideNumber" classname="PresentationTest" time="0.003"/>
-  <testcase name="testPrevSlide" classname="PresentationTest" time="0.002"/>
+  <testcase name="testNotifyObservers" classname="PresentationTest" time="0.702"/>
+  <testcase name="testObservers" classname="PresentationTest" time="0.007"/>
+  <testcase name="testGetCurrentSlide" classname="PresentationTest" time="0.002"/>
+  <testcase name="testClear" classname="PresentationTest" time="0.002"/>
+  <testcase name="testAppendAndGetSlide" classname="PresentationTest" time="0.009"/>
+  <testcase name="testGetSize" classname="PresentationTest" time="0"/>
+  <testcase name="testSetSlideNumber" classname="PresentationTest" time="0"/>
+  <testcase name="testPrevSlide" classname="PresentationTest" time="0.003"/>
   <testcase name="testGetSlideNumber" classname="PresentationTest" time="0.001"/>
-  <testcase name="testNextSlide" classname="PresentationTest" time="0.004"/>
-  <testcase name="testSetTitle" classname="PresentationTest" time="0.003"/>
+  <testcase name="testNextSlide" classname="PresentationTest" time="0.001"/>
+  <testcase name="testSetTitle" classname="PresentationTest" time="0.001"/>
 </testsuite>
