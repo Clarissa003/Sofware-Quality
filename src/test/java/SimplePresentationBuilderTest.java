@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SimplePresentationBuilderTest {
+public class SimplePresentationBuilderTest
+{
 
     private SlideBuilder builder;
     private SlideDirector director;
 
     @BeforeEach
-    public void setup() {
+    public void setup()
+    {
         builder = new SimplePresentationBuilder();
         director = new SlideDirector(builder);
     }
 
     @Test
-    public void testSimpleSlideBuilder() {
+    public void testSimpleSlideBuilder()
+    {
         List<SlideItem> slideItems = new ArrayList<>();
         slideItems.add(new TextItem(1, "Simple Text 1"));
         slideItems.add(new TextItem(2, "Simple Text 2"));
@@ -26,13 +29,13 @@ public class SimplePresentationBuilderTest {
         assertEquals("Simple Slide", slide.getTitle());
         assertEquals(2, slide.getSize());
 
-        // Check the contents of the slide items
         assertEquals("Simple Text 1", slide.getSlideItem(0).getContent());
         assertEquals("Simple Text 2", slide.getSlideItem(1).getContent());
     }
 
     @Test
-    public void testCreateTitle() {
+    public void testCreateTitle()
+    {
         String title = "Title Test";
         SlideBuilder slideBuilder = new SimplePresentationBuilder();
         Slide slide = slideBuilder.createTitle(title).build();
@@ -41,7 +44,8 @@ public class SimplePresentationBuilderTest {
     }
 
     @Test
-    public void testCreateSlideItem() {
+    public void testCreateSlideItem()
+    {
         String text = "Slide Item Test";
         SlideBuilder slideBuilder = new SimplePresentationBuilder();
         Slide slide = slideBuilder.createSlideItem(new TextItem(1, text)).build();
@@ -51,7 +55,8 @@ public class SimplePresentationBuilderTest {
     }
 
     @Test
-    public void testCreateText() {
+    public void testCreateText()
+    {
         String text = "Text Test";
         SlideBuilder slideBuilder = new SimplePresentationBuilder();
         Slide slide = slideBuilder.createText(text).build();

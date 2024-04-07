@@ -4,32 +4,32 @@ public class FancyPresentationBuilder implements SlideBuilder
 
     public FancyPresentationBuilder()
     {
-        slide = new Slide ();
+        slide = new Slide();
     }
 
     @Override
-    public SlideBuilder createTitle (String title)
+    public SlideBuilder createTitle(String title)
     {
-        slide.setTitle ("Fancy:" + title);
+        slide.setTitle("Fancy:" + title);
         return this;
     }
 
     @Override
-    public SlideBuilder createSlideItem (SlideItem item)
+    public SlideBuilder createSlideItem(SlideItem item)
     {
-        slide.append (item);
+        slide.append(item);
         return this;
     }
 
     @Override
-    public SlideBuilder createText (String text)
+    public SlideBuilder createText(String text)
     {
-        slide.append (new TextItem (1,text));
+        slide.append(new TextItem(1,text));
         return this;
     }
 
     @Override
-    public Slide build ()
+    public Slide build()
     {
         return slide;
     }

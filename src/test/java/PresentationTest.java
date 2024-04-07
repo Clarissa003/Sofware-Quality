@@ -1,76 +1,80 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class PresentationTest {
+public class PresentationTest
+{
 
     private Presentation presentation;
     private SlideViewerComponent mockSlideViewerComponent;
     private List<PresentationObserver> mockObservers;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp()
+    {
         mockSlideViewerComponent = mock(SlideViewerComponent.class);
         presentation = new Presentation(mockSlideViewerComponent);
     }
 
     @Test
-    public void testGetSize() {
+    public void testGetSize()
+    {
         assertEquals(0, presentation.getSize());
         presentation.append(new Slide());
         assertEquals(1, presentation.getSize());
     }
 
     @Test
-    public void testSetTitle() {
+    public void testSetTitle()
+    {
         presentation.setTitle("Test Title");
         assertEquals("Test Title", presentation.getTitle());
     }
 
     @Test
-    public void testGetSlideNumber() {
+    public void testGetSlideNumber()
+    {
         presentation.setSlideNumber(2);
         assertEquals(2, presentation.getSlideNumber());
     }
 
     @Test
-    public void testSetSlideNumber() {
+    public void testSetSlideNumber()
+    {
         presentation.setSlideNumber(2);
         assertEquals(2, presentation.getSlideNumber());
     }
 
     @Test
-    public void testPrevSlide() {
+    public void testPrevSlide()
+    {
         presentation.append(new Slide());
         presentation.append(new Slide());
         presentation.setSlideNumber(1);
         presentation.prevSlide();
         assertEquals(0, presentation.getSlideNumber());
-        // Try to go prevSlide from beginning
         presentation.prevSlide();
         assertEquals(0, presentation.getSlideNumber());
     }
 
     @Test
-    public void testNextSlide() {
+    public void testNextSlide()
+    {
         presentation.append(new Slide());
         presentation.append(new Slide());
         presentation.setSlideNumber(0);
         presentation.nextSlide();
         assertEquals(1, presentation.getSlideNumber());
-        // Try to go nextSlide from end
         presentation.nextSlide();
         assertEquals(1, presentation.getSlideNumber());
     }
 
     @Test
-    public void testClear() {
+    public void testClear()
+    {
         presentation.append(new Slide());
         presentation.setSlideNumber(1);
         presentation.clear();
@@ -79,7 +83,8 @@ public class PresentationTest {
     }
 
     @Test
-    public void testAppendAndGetSlide() {
+    public void testAppendAndGetSlide()
+    {
         Slide slide1 = new Slide();
         Slide slide2 = new Slide();
         presentation.append(slide1);
@@ -90,7 +95,8 @@ public class PresentationTest {
     }
 
     @Test
-    public void testGetCurrentSlide() {
+    public void testGetCurrentSlide()
+    {
         Slide slide1 = new Slide();
         Slide slide2 = new Slide();
         presentation.append(slide1);
@@ -100,7 +106,8 @@ public class PresentationTest {
     }
 
     @Test
-    public void testObservers() {
+    public void testObservers()
+    {
         PresentationObserverMock observer1 = new PresentationObserverMock();
         PresentationObserverMock observer2 = new PresentationObserverMock();
 
@@ -113,21 +120,25 @@ public class PresentationTest {
         assertEquals(1, observer2.getUpdateCallCount());
     }
 
-    static class PresentationObserverMock implements PresentationObserver {
+    static class PresentationObserverMock implements PresentationObserver
+    {
         private int updateCallCount = 0;
 
         @Override
-        public void update() {
+        public void update()
+        {
             updateCallCount++;
         }
 
-        public int getUpdateCallCount() {
+        public int getUpdateCallCount()
+        {
             return updateCallCount;
         }
     }
 
     @Test
-    public void testNotifyObservers() {
+    public void testNotifyObservers()
+    {
         PresentationObserver observer = mock(PresentationObserver.class);
         presentation.addObserver(observer);
         presentation.notifyObservers();
