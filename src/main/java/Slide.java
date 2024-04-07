@@ -28,12 +28,12 @@ public class Slide {
 		items.addElement(anItem);
 	}
 
-	// give the title of the slide
+	// Get the title of the slide
 	public String getTitle() {
 		return title;
 	}
 
-	// change the title of the slide
+	// Change the title of the slide
 	public void setTitle(String newTitle) {
 		title = newTitle;
 	}
@@ -43,60 +43,48 @@ public class Slide {
 		append(new TextItem(level, message));
 	}
 
-	// give the  SlideItem
+	// Get the  SlideItem
 	public SlideItem getSlideItem(int number) {
 		return (SlideItem)items.elementAt(number);
 	}
 
-	// give all SlideItems in a Vector
+	// Get all SlideItems in a Vector
 	public Vector<SlideItem> getSlideItems() {
 		return items;
 	}
 
-	// give the size of the Slide
+	// Get the size of the Slide
 	public int getSize() {
 		return items.size();
 	}
 
 	// draw the slide
-	public void draw(Graphics g, Rectangle area, ImageObserver view) {
+	public void draw(Graphics graphics, Rectangle area, ImageObserver view) {
 		float scale = getScale(area);
-	    int y = area.y;
+	    int yPos = area.y;
 		System.out.println("Drawing slide: " + getTitle());
-	// Title is handled separately
-		//SlideItem slideItem = new TextItem(0, getTitle());
-		/*Style style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
-		slideItem.draw(area.x, y, scale, g, style, view);
-		y += slideItem.getBoundingBox(g, view, scale, style).height;*/
-
+		// Title is handled separately
 		SlideItem titleItem = new TextItem(0, getTitle());
 		Style titleStyle = titleItem.getStyle(titleItem.getLevel());
 		if (titleStyle != null) {
-			titleItem.draw(area.x, y, scale, g, titleStyle, view);
-			y += titleItem.getBoundingBox(g, view, scale, titleStyle).height;
+			titleItem.draw(area.x, yPos, scale, graphics, titleStyle, view);
+			yPos += titleItem.getBoundingBox(graphics, view, scale, titleStyle).height;
 		} else {
 			System.err.println("Error: Title style is null"); // Error handling
 		}
 
 		for (int number = 0; number < getSize(); number++) {
 			SlideItem slideItem = getSlideItem(number);
-			Style style = slideItem.getStyle(slideItem.getLevel());
+			Style style = slideItem.getStyle(slideItem.getLevel()); //Get style level
 			if (style != null) {
+				//Print the content with the desired level
 				System.out.println("Drawing slide item " + number + ": " + slideItem.getContent());
-				slideItem.draw(area.x, y, scale, g, style, view);
-				y += slideItem.getBoundingBox(g, view, scale, style).height;
+				slideItem.draw(area.x, yPos, scale, graphics, style, view);
+				yPos += slideItem.getBoundingBox(graphics, view, scale, style).height;
 			} else {
 				System.err.println("Error: Style is null for slide item " + number); // Error handling
 			}
 		}
-
-
-		/*for (int number = 0; number < getSize(); number++) {
-			slideItem = getSlideItem(number);
-			style = slideItem.getStyle(slideItem.getLevel()); // Pass level parameter
-			slideItem.draw(area.x, y, scale, g, style, view);
-			y += slideItem.getBoundingBox(g, view, scale, style).height;
-		}*/
 	  }
 
 	// Give the scale for drawing
@@ -104,6 +92,7 @@ public class Slide {
 		return Math.min(((float)area.width) / ((float)WIDTH), ((float)area.height) / ((float)HEIGHT));
 	}
 
+	//Gives option to choose between different slide builders
 	public static SlideBuilder newBuilder(boolean isFancy) {
 		if (isFancy) {
 			return new FancyPresentationBuilder();

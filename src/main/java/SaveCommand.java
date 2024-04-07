@@ -3,14 +3,13 @@ import java.io.IOException;
 
 public class SaveCommand extends Command
 {
-    private MenuController menuController;
-    private Accessor accessor;
     public SaveCommand(Presentation presentation)
     {
         super(presentation);
 
     }
 
+    //Call save method from xmlAccessor
     @Override
     public void execute()
     {
@@ -20,10 +19,5 @@ public class SaveCommand extends Command
         } catch (IOException exception) {
             JOptionPane.showMessageDialog(null, MenuController.IOEX + exception, MenuController.SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
-        /*try {
-            accessor.saveFile(presentation, MenuController.SAVEFILE);
-        } catch (IOException exception) {
-            JOptionPane.showMessageDialog(null, MenuController.IOEX + exception, MenuController.SAVEERR, JOptionPane.ERROR_MESSAGE);
-        }*/
     }
 }

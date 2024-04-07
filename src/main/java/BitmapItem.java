@@ -63,10 +63,10 @@ public class BitmapItem extends SlideItem {
 	}
 
 // draw the image
-	public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
-		int width = x + (int) (getStyle(level).getIndent() * scale);
-		int height = y + (int) (getStyle(level).getLeading() * scale);
-		g.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
+	public void draw(int xPos, int yPos, float scale, Graphics graphics, Style myStyle, ImageObserver observer) {
+		int width = xPos + (int) (getStyle(level).getIndent() * scale);
+		int height = yPos + (int) (getStyle(level).getLeading() * scale);
+		graphics.drawImage(bufferedImage, width, height,(int) (bufferedImage.getWidth(observer)*scale),
                 (int) (bufferedImage.getHeight(observer)*scale), observer);
 	}
 

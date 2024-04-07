@@ -2,6 +2,7 @@ import java.awt.*;
 
 public class StyleLevel1 extends Style
 {
+    //Set values for style
     @Override
     String getFontName()
     {

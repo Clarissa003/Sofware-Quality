@@ -15,7 +15,7 @@ import java.awt.Font;
  */
 
 public abstract class Style {
-	// Factory method to create concrete style instances based on the level
+	// Create concrete style instances based on the level
 	public static Style getStyleForLevel(int level) {
 		switch (level) {
 			case 0:

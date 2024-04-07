@@ -41,10 +41,12 @@ public class SlideViewerComponent extends JComponent {
 		this.frame = frame;
 	}
 
+	//Get chosen size
 	public Dimension getPreferredSize() {
 		return new Dimension(Slide.WIDTH, Slide.HEIGHT);
 	}
 
+	//Update presentation
 	public void update(Presentation presentation, Slide data) {
 		if (data == null) {
 			repaint();
@@ -57,21 +59,17 @@ public class SlideViewerComponent extends JComponent {
 	}
 
 	// draw the slide
-	public void paintComponent(Graphics g) {
-		g.setColor(BGCOLOR);
-		g.fillRect(0, 0, getSize().width, getSize().height);
+	public void paintComponent(Graphics graphics) {
+		graphics.setColor(BGCOLOR);
+		graphics.fillRect(0, 0, getSize().width, getSize().height);
 		if (presentation.getSlideNumber() < 0 || slide == null) {
 			return;
 		}
-		g.setFont(labelFont);
-		g.setColor(COLOR);
-		g.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
+		graphics.setFont(labelFont);
+		graphics.setColor(COLOR);
+		graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " +
 				presentation.getSize(), XPOS, YPOS);
 		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-		slide.draw(g, area, this);
-	}
-
-	private void notifyPresentation() {
-		presentation.update();
+		slide.draw(graphics, area, this);
 	}
 }

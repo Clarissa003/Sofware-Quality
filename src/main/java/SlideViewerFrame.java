@@ -45,8 +45,4 @@ public class SlideViewerFrame extends JFrame {
 		setSize(new Dimension(WIDTH, HEIGHT)); // Same sizes as Slide has.
 		setVisible(true);
 	}
-
-	private void notifyPresentation() {
-		presentation.update();
-	}
 }

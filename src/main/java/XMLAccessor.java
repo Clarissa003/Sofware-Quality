@@ -30,7 +30,7 @@ public class XMLAccessor extends Accessor {
     /** Default API to use. */
     protected static final String DEFAULT_API_TO_USE = "dom";
     
-    /** namen van xml tags of attributen */
+    /** Name for xml tags of attributes */
     protected static final String SHOWTITLE = "showtitle";
     protected static final String SLIDETITLE = "title";
     protected static final String SLIDE = "slide";
@@ -40,7 +40,7 @@ public class XMLAccessor extends Accessor {
     protected static final String TEXT = "text";
     protected static final String IMAGE = "image";
     
-    /** tekst van messages */
+    /** text of messages */
     protected static final String PCE = "Parser Configuration Exception";
     protected static final String UNKNOWNTYPE = "Unknown Element type";
     protected static final String NFE = "Number Format Exception";
@@ -90,12 +90,12 @@ public class XMLAccessor extends Accessor {
 	protected void loadSlideItem(Slide slide, Element item) {
 		int level = 1; // default
 		NamedNodeMap attributes = item.getAttributes();
-		String leveltext = attributes.getNamedItem(LEVEL).getTextContent();
-		if (leveltext != null) {
+		String levelText = attributes.getNamedItem(LEVEL).getTextContent();
+		if (levelText != null) {
 			try {
-				level = Integer.parseInt(leveltext);
+				level = Integer.parseInt(levelText);
 			}
-			catch(NumberFormatException x) {
+			catch(NumberFormatException exception) {
 				System.err.println(NFE);
 			}
 		}
@@ -121,14 +121,17 @@ public class XMLAccessor extends Accessor {
 		out.print("<showtitle>");
 		out.print(presentation.getTitle());
 		out.println("</showtitle>");
+		//Prints title and slide number of specific slide
 		for (int slideNumber=0; slideNumber<presentation.getSize(); slideNumber++) {
 			Slide slide = presentation.getSlide(slideNumber);
 			out.println("<slide>");
 			out.println("<title>" + slide.getTitle() + "</title>");
 			Vector<SlideItem> slideItems = slide.getSlideItems();
+			//Prints the text with the specific level
 			for (int itemNumber = 0; itemNumber<slideItems.size(); itemNumber++) {
 				SlideItem slideItem = (SlideItem) slideItems.elementAt(itemNumber);
-				out.print("<item kind="); 
+				out.print("<item kind=");
+				//Selects level depending if its an image or text
 				if (slideItem instanceof TextItem) {
 					out.print("\"text\" level=\"" + slideItem.getLevel() + "\">");
 					out.print( ( (TextItem) slideItem).getText());
