@@ -15,7 +15,8 @@ import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({JOptionPane.class})
-public class KeyControllerTest {
+public class KeyControllerTest
+{
     private KeyController keyController;
     private Presentation presentationMock;
     private MenuController menuControllerMock;
@@ -35,7 +36,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_NextCommand_PageDown() {
+    public void testKeyPress_NextCommand_PageDown()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_PAGE_DOWN);
 
@@ -44,7 +46,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_NextCommand_VKDown() {
+    public void testKeyPress_NextCommand_VKDown()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_DOWN);
 
@@ -53,7 +56,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_NextCommand_VKEnter() {
+    public void testKeyPress_NextCommand_VKEnter()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_ENTER);
 
@@ -62,7 +66,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_NextCommand_VKT() {
+    public void testKeyPress_NextCommand_VKT()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_T);
 
@@ -71,7 +76,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_PrevCommand_PageUP() {
+    public void testKeyPress_PrevCommand_PageUP()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_PAGE_UP);
 
@@ -80,7 +86,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_PrevCommand_VKUp() {
+    public void testKeyPress_PrevCommand_VKUp()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_UP);
 
@@ -89,7 +96,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_PrevCommand_VKP() {
+    public void testKeyPress_PrevCommand_VKP()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_P);
 
@@ -98,7 +106,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_OpenCommand_VKO() {
+    public void testKeyPress_OpenCommand_VKO()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_O);
 
@@ -107,7 +116,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_NewCommand_VKN() {
+    public void testKeyPress_NewCommand_VKN()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_N);
 
@@ -124,7 +134,8 @@ public class KeyControllerTest {
     }
 
     @Test
-    public void testKeyPress_ExitCommand() {
+    public void testKeyPress_ExitCommand()
+    {
         KeyEvent keyEvent = mock(KeyEvent.class);
         when(keyEvent.getKeyCode()).thenReturn(KeyEvent.VK_X);
 

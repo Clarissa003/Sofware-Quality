@@ -22,7 +22,7 @@ public class Presentation implements PresentationObserver
     private int currentSlideNumber = 0;
     private SlideViewerComponent slideViewComponent = null;
     private SlideViewerFrame slideViewerFrame;
-    private List<PresentationObserver> observers;
+    private final List<PresentationObserver> observers;
 
     public Presentation()
     {
@@ -53,7 +53,7 @@ public class Presentation implements PresentationObserver
         showTitle = nt;
     }
 
-    public void setShowView (SlideViewerComponent slideViewerComponent)
+    public void setShowView(SlideViewerComponent slideViewerComponent)
     {
         this.slideViewComponent = slideViewerComponent;
     }
@@ -68,9 +68,8 @@ public class Presentation implements PresentationObserver
     public void setSlideNumber(int number)
     {
         currentSlideNumber = number;
-        if(slideViewComponent != null)
-        {
-            slideViewComponent.update(this, getCurrentSlide ());
+        if (slideViewComponent != null) {
+            slideViewComponent.update(this, getCurrentSlide());
             notifyObservers();
         }
     }
@@ -78,7 +77,7 @@ public class Presentation implements PresentationObserver
     // go to the previous slide unless your at the beginning of the presentation
     public void prevSlide()
     {
-        if(currentSlideNumber > 0)
+        if (currentSlideNumber > 0)
         {
             setSlideNumber(currentSlideNumber - 1);
         }
@@ -87,7 +86,7 @@ public class Presentation implements PresentationObserver
     // go to the next slide unless your at the end of the presentation.
     public void nextSlide()
     {
-        if(currentSlideNumber < (showList.size () - 1))
+        if (currentSlideNumber < (showList.size() - 1))
         {
             setSlideNumber(currentSlideNumber + 1);
         }
@@ -97,7 +96,7 @@ public class Presentation implements PresentationObserver
     public void clear()
     {
         showList = new ArrayList<Slide>();
-        setSlideNumber(- 1);
+        setSlideNumber(-1);
     }
 
     public void append(Slide slide)
@@ -107,11 +106,11 @@ public class Presentation implements PresentationObserver
 
     public Slide getSlide(int number)
     {
-        if(number < 0 || number >= getSize ())
+        if (number < 0 || number >= getSize())
         {
             return null;
         }
-        return(Slide) showList.get(number);
+        return showList.get(number);
     }
 
     public Slide getCurrentSlide()
@@ -141,7 +140,7 @@ public class Presentation implements PresentationObserver
 
     public void notifyObservers()
     {
-        for(PresentationObserver observer : observers)
+        for (PresentationObserver observer : observers)
         {
             observer.update();
         }
@@ -150,9 +149,9 @@ public class Presentation implements PresentationObserver
     @Override
     public void update()
     {
-        if(slideViewComponent != null)
+        if (slideViewComponent != null)
         {
-            slideViewComponent.update(this, getCurrentSlide ());
+            slideViewComponent.update(this, getCurrentSlide());
         }
 
         notifyObservers();

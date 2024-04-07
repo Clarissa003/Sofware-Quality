@@ -17,12 +17,14 @@ public class OpenCommand extends Command
     @Override
     public void execute()
     {
-        presentation.clear();;
+        presentation.clear();
         Accessor xmlAccessor = new XMLAccessor();
-        try {
+        try
+        {
             xmlAccessor.loadFile(presentation, MenuController.TESTFILE);
             presentation.setSlideNumber(0);
-        } catch (IOException exception) {
+        } catch (IOException exception)
+        {
             JOptionPane.showMessageDialog(null, MenuController.IOEX + exception, MenuController.LOADERR, JOptionPane.ERROR_MESSAGE);
         }
     }

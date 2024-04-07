@@ -4,7 +4,7 @@ import com.nhlstenden.presentation.SlideItem;
 
 public class FancyPresentationBuilder implements SlideBuilder
 {
-    private Slide slide;
+    private final Slide slide;
 
     public FancyPresentationBuilder()
     {
@@ -28,7 +28,7 @@ public class FancyPresentationBuilder implements SlideBuilder
     @Override
     public SlideBuilder createText(String text)
     {
-        slide.append(new TextItem(1,text));
+        slide.append(new TextItem(1, text));
         return this;
     }
 

@@ -6,7 +6,8 @@ import java.awt.*;
 
 public class AboutCommand extends Command
 {
-    private Frame aboutBox;
+    private final Frame aboutBox;
+
     public AboutCommand(Presentation presentation, Frame aboutBox)
     {
         super(presentation);

@@ -8,7 +8,7 @@ import java.awt.event.KeyAdapter;
 
 public class KeyController extends KeyAdapter
 {
-    private Presentation presentation;
+    private final Presentation presentation;
 
     public KeyController(Presentation presentation)
     {
@@ -19,8 +19,7 @@ public class KeyController extends KeyAdapter
     {
         Command command = null;
 
-        switch(keyEvent.getKeyCode())
-        {
+        switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_PAGE_DOWN:
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_ENTER:
@@ -56,8 +55,7 @@ public class KeyController extends KeyAdapter
                 break;
         }
 
-        if(command != null)
-        {
+        if (command != null) {
             command.execute();
         }
     }
@@ -68,8 +66,7 @@ public class KeyController extends KeyAdapter
         {
             Class<?> commandClass = Class.forName(className);
             return (Command) commandClass.getDeclaredConstructor(Presentation.class).newInstance(presentation);
-        }
-        catch(Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
             return null;

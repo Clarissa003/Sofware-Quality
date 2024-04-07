@@ -4,7 +4,7 @@ import com.nhlstenden.presentation.SlideItem;
 
 public class SimplePresentationBuilder implements SlideBuilder
 {
-    private Slide slide;
+    private final Slide slide;
 
     public SimplePresentationBuilder()
     {
@@ -28,7 +28,7 @@ public class SimplePresentationBuilder implements SlideBuilder
     @Override
     public SlideBuilder createText(String text)
     {
-        slide.append(0,text);
+        slide.append(0, text);
         return this;
     }
 

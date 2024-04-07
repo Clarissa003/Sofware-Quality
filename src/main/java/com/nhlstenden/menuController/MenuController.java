@@ -24,10 +24,10 @@ import java.util.List;
 
 public class MenuController extends MenuBar
 {
-    private Frame parent;
-    private Presentation presentation;
+    private final Frame parent;
+    private final Presentation presentation;
 
-    private Accessor accessor;
+    private final Accessor accessor;
     private static final long serialVersionUID = 227L;
     protected static final String FILE = "File";
     protected static final String PAGENR = "Page number?";

@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class NewCommandTest {
+public class NewCommandTest
+{
 
     @Test
-    public void testExecute() {
+    public void testExecute()
+    {
         Presentation presentationMock = mock(Presentation.class);
         MenuController menuControllerMock = mock(MenuController.class);
 

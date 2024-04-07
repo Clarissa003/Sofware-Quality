@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import javax.swing.*;
 import java.awt.event.WindowEvent;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SlideViewerFrameTest
 {
@@ -36,7 +35,7 @@ public class SlideViewerFrameTest
 
             assertEquals("Test com.nhlstenden.slide.Slide Viewer", frame.getTitle());
 
-            assertTrue(contentPane.getComponent(0) instanceof SlideViewerComponent);
+            assertInstanceOf(SlideViewerComponent.class, contentPane.getComponent(0));
 
             assertEquals(SlideViewerFrame.WIDTH, frame.getSize().width);
             assertEquals(SlideViewerFrame.HEIGHT, frame.getSize().height);

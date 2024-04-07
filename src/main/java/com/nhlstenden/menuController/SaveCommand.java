@@ -20,9 +20,11 @@ public class SaveCommand extends Command
     public void execute()
     {
         Accessor xmlAccessor = new XMLAccessor();
-        try {
+        try
+        {
             xmlAccessor.saveFile(presentation, MenuController.SAVEFILE);
-        } catch (IOException exception) {
+        } catch (IOException exception)
+        {
             JOptionPane.showMessageDialog(null, MenuController.IOEX + exception, MenuController.SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
     }

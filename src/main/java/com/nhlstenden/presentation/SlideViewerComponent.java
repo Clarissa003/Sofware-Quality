@@ -37,43 +37,46 @@ public class SlideViewerComponent extends JComponent
     private static final int XPOS = 1100;
     private static final int YPOS = 20;
 
-    public SlideViewerComponent (Presentation presentation, JFrame frame)
+    public SlideViewerComponent(Presentation presentation, JFrame frame)
     {
-        setBackground (BGCOLOR);
+        setBackground(BGCOLOR);
         this.presentation = presentation;
-        labelFont = new Font (FONTNAME, FONTSTYLE, FONTHEIGHT);
+        labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
         this.frame = frame;
     }
 
-	//Get chosen size
-	public Dimension getPreferredSize() {
-		return new Dimension(Slide.WIDTH, Slide.HEIGHT);
-	}
+    //Get chosen size
+    public Dimension getPreferredSize()
+    {
+        return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    }
 
-	//Update presentation
-	public void update(Presentation presentation, Slide data) {
-		if (data == null) {
-			repaint();
-			return;
-		}
-		this.presentation = presentation;
-		this.slide = data;
-		repaint();
-		frame.setTitle(presentation.getTitle());
-	}
+    //Update presentation
+    public void update(Presentation presentation, Slide data)
+    {
+        if (data == null) {
+            repaint();
+            return;
+        }
+        this.presentation = presentation;
+        this.slide = data;
+        repaint();
+        frame.setTitle(presentation.getTitle());
+    }
 
-	// draw the slide
-	public void paintComponent(Graphics graphics) {
-		graphics.setColor(BGCOLOR);
-		graphics.fillRect(0, 0, getSize().width, getSize().height);
-		if (presentation.getSlideNumber() < 0 || slide == null) {
-			return;
-		}
-		graphics.setFont(labelFont);
-		graphics.setColor(COLOR);
-		graphics.drawString("com.nhlstenden.slide.Slide " + (1 + presentation.getSlideNumber()) + " of " +
-				presentation.getSize(), XPOS, YPOS);
-		Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-		slide.draw(graphics, this, area);
-	}
+    // draw the slide
+    public void paintComponent(Graphics graphics)
+    {
+        graphics.setColor(BGCOLOR);
+        graphics.fillRect(0, 0, getSize().width, getSize().height);
+        if (presentation.getSlideNumber() < 0 || slide == null) {
+            return;
+        }
+        graphics.setFont(labelFont);
+        graphics.setColor(COLOR);
+        graphics.drawString("com.nhlstenden.slide.Slide " + (1 + presentation.getSlideNumber()) + " of " +
+                presentation.getSize(), XPOS, YPOS);
+        Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+        slide.draw(graphics, this, area);
+    }
 }

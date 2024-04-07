@@ -6,7 +6,8 @@ import com.nhlstenden.presentation.Presentation;
 
 public class NewCommand extends Command
 {
-    private MenuController menuController;
+    private final MenuController menuController;
+
     public NewCommand(Presentation presentation, MenuController menuController)
     {
         super(presentation);

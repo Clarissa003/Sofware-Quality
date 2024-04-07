@@ -20,13 +20,13 @@ public class SlideViewerComponentTest
     private SlideViewerComponent slideViewerComponent;
 
     @BeforeEach
-    void setUp ()
+    void setUp()
     {
-        presentation = mock (Presentation.class);
-        slide = new Slide ();
+        presentation = mock(Presentation.class);
+        slide = new Slide();
 
         JFrame mockFrame = mock(JFrame.class);
-        slideViewerComponent = new SlideViewerComponent (presentation, mockFrame);
+        slideViewerComponent = new SlideViewerComponent(presentation, mockFrame);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class SlideViewerComponentTest
     @Test
     void testUpdate()
     {
-        when (presentation.getCurrentSlide()).thenReturn(slide);
+        when(presentation.getCurrentSlide()).thenReturn(slide);
 
         slideViewerComponent.update(presentation, slide);
 

@@ -24,7 +24,7 @@ public class FancyPresentationBuilderTest
     public void testFancySlideBuilder()
     {
         List<SlideItem> slideItems = new ArrayList<>();
-        slideItems.add(new TextItem (1, "Fancy Text 1"));
+        slideItems.add(new TextItem(1, "Fancy Text 1"));
         slideItems.add(new TextItem(2, "Fancy Text 2"));
 
         Slide slide = director.createSlide("Fancy com.nhlstenden.slide.Slide", slideItems);
@@ -51,7 +51,7 @@ public class FancyPresentationBuilderTest
     {
         String text = "Fancy com.nhlstenden.slide.Slide Item Test";
         SlideBuilder slideBuilder = new FancyPresentationBuilder();
-        Slide slide = slideBuilder.createSlideItem(new TextItem (1, text)).build();
+        Slide slide = slideBuilder.createSlideItem(new TextItem(1, text)).build();
 
         assertEquals(1, slide.getSize());
         assertEquals(text, slide.getSlideItem(0).getContent());

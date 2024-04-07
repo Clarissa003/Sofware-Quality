@@ -9,13 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class SlideItemTest {
+public class SlideItemTest
+{
 
     private SlideItem slideItem;
     private Style style;
 
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
         slideItem = mock(SlideItem.class);
         style = new StyleLevel1();
 
@@ -24,12 +26,14 @@ public class SlideItemTest {
     }
 
     @Test
-    public void testGetLevel() {
+    public void testGetLevel()
+    {
         assertEquals(1, slideItem.getLevel());
     }
 
     @Test
-    public void testGetStyle() {
+    public void testGetStyle()
+    {
         Style retrievedStyle = slideItem.getStyle(1);
         assertEquals(style, retrievedStyle);
     }
