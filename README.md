@@ -42,5 +42,3 @@ Jabberpoint follows a DTAP (Development, Test, Acceptance, Production) workflow,
   
 - **Production**:
   - The final application is deployed for use.
-
-This README provides an overview of Jabberpoint, its design patterns, and the DTAP workflow it follows.
