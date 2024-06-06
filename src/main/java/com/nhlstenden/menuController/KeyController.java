@@ -60,7 +60,7 @@ public class KeyController extends KeyAdapter
         }
     }
 
-    private Command instantiateCommand(String className)
+    Command instantiateCommand(String className)
     {
         try
         {

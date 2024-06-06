@@ -22,10 +22,9 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuController extends MenuBar
-{
+public class MenuController extends MenuBar {
     private final Frame parent;
-    private final Presentation presentation;
+    final Presentation presentation;
 
     private final Accessor accessor;
     private static final long serialVersionUID = 227L;
@@ -38,24 +37,20 @@ public class MenuController extends MenuBar
     protected static final String LOADERR = "Load Error";
     protected static final String SAVEERR = "Save Error";
     private boolean newSlideRequested = false;
-    private JOptionPane optionPane;
+    JOptionPane optionPane = new JOptionPane();
 
-    public MenuController(Frame frame, Presentation pres, Accessor accessor)
-    {
+    public MenuController(Frame frame, Presentation pres, Accessor accessor) {
         parent = frame;
         presentation = pres;
         this.accessor = accessor;
-        setupMenus ();
+        setupMenus();
     }
 
-    public void setOptionPane(JOptionPane optionPane)
-    {
+    public void setOptionPane(JOptionPane optionPane) {
         this.optionPane = optionPane;
     }
 
-
-    private void setupMenus()
-    {
+    private void setupMenus() {
         Menu fileMenu = new Menu("File");
         fileMenu.add(createMenuItem("Open", new OpenCommand(presentation), KeyEvent.VK_O));
         fileMenu.add(createMenuItem("New", new NewCommand(presentation, this), KeyEvent.VK_N));
@@ -78,50 +73,40 @@ public class MenuController extends MenuBar
         setHelpMenu(helpMenu);
     }
 
-    private MenuItem createMenuItem(final String name, final Command command, int keyCode)
-    {
+    private MenuItem createMenuItem(final String name, final Command command, int keyCode) {
         MenuItem menuItem = new MenuItem(name);
-        menuItem.addActionListener(new ActionListener ()
-        {
-            public void actionPerformed(ActionEvent actionEvent)
-            {
+        menuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) {
                 command.execute();
-                if(name.equals ("New"))
-                {
+                if (name.equals("New")) {
                     showCreateSlideDialog(); // Show create slide dialog only if "New" button is clicked
                 }
             }
         });
-        menuItem.setShortcut(new MenuShortcut (keyCode));
+        menuItem.setShortcut(new MenuShortcut(keyCode));
         return menuItem;
     }
 
-    public boolean isSlideCreationRequested()
-    {
+    public boolean isSlideCreationRequested() {
         return newSlideRequested;
     }
 
-    public void clearSlideCreationRequest()
-    {
+    public void clearSlideCreationRequest() {
         newSlideRequested = false;
     }
 
-    public void setNewSlideRequested(boolean requested)
-    {
+    public void setNewSlideRequested(boolean requested) {
         newSlideRequested = requested;
     }
 
-    public void showCreateSlideDialog()
-    {
-        if(! newSlideRequested)
-        {
+    public void showCreateSlideDialog() {
+        if (!newSlideRequested) {
             return; // New slide not requested, do nothing
         }
 
         // Prompt for slide title
         String title = JOptionPane.showInputDialog(parent, "Enter slide title:");
-        if(title == null || title.trim().isEmpty())
-        {
+        if (title == null || title.trim().isEmpty()) {
             clearSlideCreationRequest();
             return; // Cancelled or empty title, do nothing
         }
@@ -129,18 +114,16 @@ public class MenuController extends MenuBar
         // Prompt for slide content
         String content;
         StringBuilder allContent = new StringBuilder();
-        do
-        {
+        do {
             content = JOptionPane.showInputDialog(parent, "Enter slide content (empty line to finish):");
-            if (content != null && ! content.isEmpty())
-            {
+            if (content != null && !content.isEmpty()) {
                 allContent.append(content).append("\n");
             }
-        } while (content != null && ! content.isEmpty());
+        } while (content != null && !content.isEmpty());
 
         // Create a list with just the text content as com.nhlstenden.presentation.SlideItem
         List<SlideItem> slideItems = new ArrayList<>();
-        slideItems.add(new TextItem(1, allContent.toString ().trim ()));
+        slideItems.add(new TextItem(1, allContent.toString().trim()));
 
         // Determine if the user wants a fancy slide
         boolean createFancySlide = shouldCreateFancySlide();
@@ -149,9 +132,8 @@ public class MenuController extends MenuBar
         SlideDirector slideDirector;
         if (createFancySlide) {
             slideDirector = new SlideDirector(Slide.newBuilder(true));
-        } else
-        {
-            slideDirector = new SlideDirector(Slide.newBuilder (false));
+        } else {
+            slideDirector = new SlideDirector(Slide.newBuilder(false));
         }
 
         // Create the slide with the provided title and content
@@ -167,8 +149,7 @@ public class MenuController extends MenuBar
         clearSlideCreationRequest();
     }
 
-    private boolean shouldCreateFancySlide()
-    {
+    boolean shouldCreateFancySlide() {
         int choice = JOptionPane.showConfirmDialog(parent, "Create Fancy com.nhlstenden.slide.Slide?", "Choose com.nhlstenden.slide.Slide Type", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return choice == JOptionPane.YES_OPTION;
     }
