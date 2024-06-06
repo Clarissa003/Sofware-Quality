@@ -2,13 +2,6 @@ package com.nhlstenden.slide;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import com.nhlstenden.style.Style;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 class BitmapItemTest {
 

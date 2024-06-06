@@ -1,6 +1,5 @@
 package com.nhlstenden.style;
 
-import com.nhlstenden.style.StyleLevel2;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;

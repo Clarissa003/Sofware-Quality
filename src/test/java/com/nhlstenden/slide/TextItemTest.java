@@ -5,15 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 import java.text.AttributedString;
-import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -38,7 +34,6 @@ public class TextItemTest {
         when(mockStyle.getIndent()).thenReturn(20);
         when(mockStyle.getColor()).thenReturn(Color.BLACK);
 
-        // Set up a real Graphics2D object
         BufferedImage image = new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB);
         realGraphics = image.createGraphics();
         realGraphics.setTransform(new AffineTransform());
@@ -102,11 +97,7 @@ public class TextItemTest {
 
     @Test
     public void testDraw() {
-        // Call draw to ensure no exceptions are thrown
         textItem.draw(0, 0, 1.0f, realGraphics, mockStyle, mockObserver);
-
-        // As we can't verify realGraphics with mock, we'll check that the draw method executes successfully
-        // The verification part for the actual drawing would be visual/manual
     }
 
     @Test
