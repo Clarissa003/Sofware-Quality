@@ -1,8 +1,6 @@
 package com.nhlstenden.slide;
 
 import com.nhlstenden.presentation.SlideItem;
-import com.nhlstenden.slide.Slide;
-import com.nhlstenden.slide.SlideBuilder;
 
 import java.util.List;
 

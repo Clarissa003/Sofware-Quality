@@ -1,7 +1,5 @@
 package com.nhlstenden.style;
 
-import com.nhlstenden.style.Style;
-
 import java.awt.*;
 
 public class StyleLevel2 extends Style

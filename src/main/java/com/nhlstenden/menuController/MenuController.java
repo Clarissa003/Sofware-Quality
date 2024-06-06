@@ -1,9 +1,5 @@
 package com.nhlstenden.menuController;
 
-import com.nhlstenden.menuController.AboutCommand;
-import com.nhlstenden.menuController.Command;
-import com.nhlstenden.menuController.ExitCommand;
-import com.nhlstenden.menuController.GoToCommand;
 import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.presentation.SlideItem;
 import com.nhlstenden.slide.Slide;
@@ -79,7 +75,7 @@ public class MenuController extends MenuBar {
             public void actionPerformed(ActionEvent actionEvent) {
                 command.execute();
                 if (name.equals("New")) {
-                    showCreateSlideDialog(); // Show create slide dialog only if "New" button is clicked
+                    showCreateSlideDialog();
                 }
             }
         });
@@ -104,14 +100,12 @@ public class MenuController extends MenuBar {
             return; // New slide not requested, do nothing
         }
 
-        // Prompt for slide title
         String title = JOptionPane.showInputDialog(parent, "Enter slide title:");
         if (title == null || title.trim().isEmpty()) {
             clearSlideCreationRequest();
-            return; // Cancelled or empty title, do nothing
+            return;
         }
 
-        // Prompt for slide content
         String content;
         StringBuilder allContent = new StringBuilder();
         do {
@@ -121,14 +115,11 @@ public class MenuController extends MenuBar {
             }
         } while (content != null && !content.isEmpty());
 
-        // Create a list with just the text content as com.nhlstenden.presentation.SlideItem
         List<SlideItem> slideItems = new ArrayList<>();
         slideItems.add(new TextItem(1, allContent.toString().trim()));
 
-        // Determine if the user wants a fancy slide
         boolean createFancySlide = shouldCreateFancySlide();
 
-        // Create the new slide using the appropriate com.nhlstenden.slide.SlideDirector
         SlideDirector slideDirector;
         if (createFancySlide) {
             slideDirector = new SlideDirector(Slide.newBuilder(true));
@@ -136,16 +127,12 @@ public class MenuController extends MenuBar {
             slideDirector = new SlideDirector(Slide.newBuilder(false));
         }
 
-        // Create the slide with the provided title and content
         Slide newSlide = slideDirector.createSlide(title, slideItems);
 
-        // Add the new slide to the existing presentation
         presentation.append(newSlide);
 
-        // Notify observers (like com.nhlstenden.presentation.SlideViewerComponent) that the presentation has changed
         presentation.notifyObservers();
 
-        // Clear the slide creation request
         clearSlideCreationRequest();
     }
 

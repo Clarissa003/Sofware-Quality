@@ -1,7 +1,5 @@
 package com.nhlstenden.menuController;
 
-import com.nhlstenden.menuController.Command;
-import com.nhlstenden.menuController.MenuController;
 import com.nhlstenden.presentation.Presentation;
 
 public class NewCommand extends Command

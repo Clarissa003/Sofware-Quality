@@ -2,8 +2,6 @@ package com.nhlstenden.presentation;
 
 import com.nhlstenden.menuController.Command;
 import com.nhlstenden.slide.Slide;
-import com.nhlstenden.slide.SlideBuilder;
-import com.nhlstenden.slide.FancyPresentationBuilder;
 import com.nhlstenden.slide.SlideDirector;
 
 import java.util.ArrayList;

@@ -10,7 +10,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import com.nhlstenden.menuController.Accessor;
 import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.presentation.SlideItem;
 import com.nhlstenden.slide.BitmapItem;

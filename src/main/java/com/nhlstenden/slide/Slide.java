@@ -5,7 +5,6 @@ import com.nhlstenden.presentation.SlideViewerComponent;
 import com.nhlstenden.style.Style;
 
 import java.awt.Graphics;
-import java.awt.image.ImageObserver;
 import java.util.Vector;
 
 public class Slide {

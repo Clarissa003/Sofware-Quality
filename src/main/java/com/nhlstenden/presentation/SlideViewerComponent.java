@@ -52,7 +52,7 @@ public class SlideViewerComponent extends JComponent {
     // draw the slide
     @Override
     protected void paintComponent(Graphics graphics) {
-        super.paintComponent(graphics); // Always call super.paintComponent first
+        super.paintComponent(graphics);
         graphics.setColor(BGCOLOR);
         graphics.fillRect(0, 0, getSize().width, getSize().height);
         if (presentation.getSlideNumber() < 0 || slide == null) {
