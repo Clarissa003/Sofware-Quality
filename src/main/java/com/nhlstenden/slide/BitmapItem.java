@@ -24,7 +24,7 @@ import java.io.IOException;
 
 public class BitmapItem extends SlideItem
 {
-    private BufferedImage bufferedImage;
+    BufferedImage bufferedImage;
     private final String imageName;
 
     protected static final String FILE = "File ";
