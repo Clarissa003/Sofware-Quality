@@ -20,5 +20,6 @@ public class NewCommand extends Command
         presentation.clear();
         menuController.setNewSlideRequested(true);
         menuController.showCreateSlideDialog();
+        presentation.setSlideNumber(presentation.getSize() - 1);
     }
 }

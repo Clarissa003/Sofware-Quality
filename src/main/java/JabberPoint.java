@@ -3,18 +3,17 @@ import com.nhlstenden.menuController.MenuController;
 import com.nhlstenden.menuController.XMLAccessor;
 import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.presentation.SlideViewerFrame;
+import com.nhlstenden.slide.Slide;
 
 import javax.swing.*;
 import java.io.IOException;
 
-public class JabberPoint
-{
+public class JabberPoint {
     protected static final String IOERR = "IO Error: ";
     protected static final String JABERR = "Jabberpoint Error ";
     protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 
-    public static void main(String[] argv)
-    {
+    public static void main(String[] argv) {
         Presentation presentation = new Presentation();
         SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
 
@@ -26,7 +25,7 @@ public class JabberPoint
             }
             presentation.setSlideNumber(0);
 
-            // Create com.nhlstenden.menuController.MenuController and set it as the menu bar for the frame
+            // Create MenuController and set it as the menu bar for the frame
             MenuController menuController = new MenuController(frame, presentation, Accessor.getDemoAccessor());
             frame.setMenuBar(menuController);
 
@@ -35,6 +34,12 @@ public class JabberPoint
 
             // Check if new slide is requested and show create slide dialog
             if (menuController.isSlideCreationRequested()) {
+                // Call method to show create slide dialog
+                presentation.addObserver(() -> {
+                    Slide newSlide = presentation.getSlide(presentation.getSize() - 1);
+                    presentation.append(newSlide);
+                    presentation.setSlideNumber(presentation.getSize() - 1);
+                });
                 menuController.showCreateSlideDialog();
             }
 
