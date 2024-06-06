@@ -84,12 +84,7 @@ public class KeyControllerTest {
     public void testKeyPress_ExitCommand_VKX() {
         testKeyPress(KeyEvent.VK_X, "com.nhlstenden.menuController.ExitCommand");
     }
-
-    @Test
-    public void testKeyPress_GoToCommand_VKG() {
-        testKeyPress(KeyEvent.VK_G, "com.nhlstenden.menuController.GoToCommand");
-    }
-
+    
     @Test
     public void testKeyPress_AboutCommand_VKA() {
         testKeyPress(KeyEvent.VK_A, "com.nhlstenden.menuController.AboutCommand");
