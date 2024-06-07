@@ -9,48 +9,48 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class FancyPresentationBuilderTest
+class SimpleSlideBuilderTest
 {
     private SlideDirector director;
 
     @BeforeEach
     public void setup()
     {
-        SlideBuilder builder = new FancyPresentationBuilder();
+        SlideBuilder builder = new SimpleSlideBuilder();
         director = new SlideDirector(builder);
     }
 
     @Test
-    public void testFancySlideBuilder()
+    public void testSimpleSlideBuilder()
     {
         List<SlideItem> slideItems = new ArrayList<>();
-        slideItems.add(new TextItem(1, "Fancy Text 1"));
-        slideItems.add(new TextItem(2, "Fancy Text 2"));
+        slideItems.add(new TextItem(1, "Simple Text 1"));
+        slideItems.add(new TextItem(2, "Simple Text 2"));
 
-        Slide slide = director.createSlide("Fancy com.nhlstenden.slide.Slide", slideItems);
+        Slide slide = director.createSlide("Simple com.nhlstenden.slide.Slide", slideItems);
 
-        assertEquals("Fancy:Fancy com.nhlstenden.slide.Slide", slide.getTitle());
+        assertEquals("Simple com.nhlstenden.slide.Slide", slide.getTitle());
         assertEquals(2, slide.getSize());
 
-        assertEquals("Fancy Text 1", slide.getSlideItem(0).getContent());
-        assertEquals("Fancy Text 2", slide.getSlideItem(1).getContent());
+        assertEquals("Simple Text 1", slide.getSlideItem(0).getContent());
+        assertEquals("Simple Text 2", slide.getSlideItem(1).getContent());
     }
 
     @Test
     public void testCreateTitle()
     {
-        String title = "Fancy Title Test";
-        SlideBuilder slideBuilder = new FancyPresentationBuilder();
+        String title = "Title Test";
+        SlideBuilder slideBuilder = new SimpleSlideBuilder();
         Slide slide = slideBuilder.createTitle(title).build();
 
-        assertEquals("Fancy:" + title, slide.getTitle());
+        assertEquals(title, slide.getTitle());
     }
 
     @Test
     public void testCreateSlideItem()
     {
-        String text = "Fancy com.nhlstenden.slide.Slide Item Test";
-        SlideBuilder slideBuilder = new FancyPresentationBuilder();
+        String text = "com.nhlstenden.slide.Slide Item Test";
+        SlideBuilder slideBuilder = new SimpleSlideBuilder();
         Slide slide = slideBuilder.createSlideItem(new TextItem(1, text)).build();
 
         assertEquals(1, slide.getSize());
@@ -60,8 +60,8 @@ public class FancyPresentationBuilderTest
     @Test
     public void testCreateText()
     {
-        String text = "Fancy Text Test";
-        SlideBuilder slideBuilder = new FancyPresentationBuilder();
+        String text = "Text Test";
+        SlideBuilder slideBuilder = new SimpleSlideBuilder();
         Slide slide = slideBuilder.createText(text).build();
 
         assertEquals(1, slide.getSize());

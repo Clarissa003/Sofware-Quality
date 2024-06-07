@@ -1,7 +1,5 @@
 package com.nhlstenden.menuController;
 
-import com.nhlstenden.menuController.Command;
-import com.nhlstenden.menuController.MenuController;
 import com.nhlstenden.presentation.Presentation;
 
 import javax.swing.*;
@@ -15,7 +13,6 @@ public class SaveCommand extends Command
 
     }
 
-    //Call save method from xmlAccessor
     @Override
     public void execute()
     {

@@ -2,11 +2,11 @@ package com.nhlstenden.slide;
 
 import com.nhlstenden.presentation.SlideItem;
 
-public class FancyPresentationBuilder implements SlideBuilder
+public class SimpleSlideBuilder implements SlideBuilder
 {
     private final Slide slide;
 
-    public FancyPresentationBuilder()
+    public SimpleSlideBuilder()
     {
         slide = new Slide();
     }
@@ -14,7 +14,7 @@ public class FancyPresentationBuilder implements SlideBuilder
     @Override
     public SlideBuilder createTitle(String title)
     {
-        slide.setTitle("Fancy:" + title);
+        slide.setTitle(title);
         return this;
     }
 
@@ -28,7 +28,7 @@ public class FancyPresentationBuilder implements SlideBuilder
     @Override
     public SlideBuilder createText(String text)
     {
-        slide.append(new TextItem(1, text));
+        slide.append(0, text);
         return this;
     }
 

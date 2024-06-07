@@ -1,13 +1,10 @@
 package com.nhlstenden.style;
 
-import com.nhlstenden.style.Style;
-
 import java.awt.*;
 
 public class StyleLevel0 extends Style
 {
 
-    //Set values for style
     @Override
     public String getFontName()
     {
