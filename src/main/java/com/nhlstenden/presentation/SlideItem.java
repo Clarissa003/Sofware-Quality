@@ -35,14 +35,11 @@ public abstract class SlideItem
         return Style.getStyleForLevel(level);
     }
 
-    // Give the bounding box
     public abstract Rectangle getBoundingBox(Graphics graphics,
                                              ImageObserver observer, float scale, Style style);
 
-    // Draw the item
     public abstract void draw(int xPos, int yPos, float scale,
                               Graphics graphics, Style style, ImageObserver observer);
 
-    //Get content of slideItem
     public abstract String getContent();
 }

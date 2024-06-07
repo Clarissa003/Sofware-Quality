@@ -1,6 +1,5 @@
 package com.nhlstenden.menuController;
 
-import com.nhlstenden.menuController.Command;
 import com.nhlstenden.presentation.Presentation;
 
 public class ExitCommand extends Command

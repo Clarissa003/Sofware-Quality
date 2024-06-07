@@ -10,7 +10,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import com.nhlstenden.menuController.Accessor;
 import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.presentation.SlideItem;
 import com.nhlstenden.slide.BitmapItem;
@@ -106,7 +105,7 @@ public class XMLAccessor extends Accessor
 
     protected void loadSlideItem(Slide slide, Element item)
     {
-        int level = 1; // default
+        int level = 1;
         NamedNodeMap attributes = item.getAttributes();
         String levelText = attributes.getNamedItem(LEVEL).getTextContent();
         if (levelText != null)

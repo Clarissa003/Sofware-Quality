@@ -3,9 +3,6 @@ package com.nhlstenden.presentation;
 import com.nhlstenden.menuController.Accessor;
 import com.nhlstenden.menuController.KeyController;
 import com.nhlstenden.menuController.MenuController;
-import com.nhlstenden.presentation.Presentation;
-import com.nhlstenden.presentation.SlideViewerComponent;
-
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
@@ -49,8 +46,8 @@ public class SlideViewerFrame extends JFrame
         });
         getContentPane ().add (slideViewerComponent);
         addKeyListener (new KeyController (presentation)); // add a controller
-        setMenuBar (new MenuController(this, presentation, Accessor.getDemoAccessor ()));    // add another controller
-        setSize (new Dimension (WIDTH, HEIGHT)); // Same sizes as com.nhlstenden.slide.Slide has.
+        setMenuBar (new MenuController(this, presentation, Accessor.getDemoAccessor ()));
+        setSize (new Dimension (WIDTH, HEIGHT));
         setVisible (true);
     }
 }

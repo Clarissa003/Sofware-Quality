@@ -1,27 +1,16 @@
 package com.nhlstenden.presentation;
 
-import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.slide.Slide;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-
-/**
- * <p>com.nhlstenden.presentation.SlideViewerComponent is a graphical component that can show slides.</p>
- *
- * @author Ian F. Darwin, ian@darwinsys.com, Gert Florijn, Sylvia Stuurman
- * @version 1.6 2014/05/16 Sylvia Stuurman
- */
-
 public class SlideViewerComponent extends JComponent
 {
-
     Slide slide; // current slide
     private Font labelFont = null; // font for labels
     private Presentation presentation = null; // the presentation
@@ -45,13 +34,13 @@ public class SlideViewerComponent extends JComponent
         this.frame = frame;
     }
 
-    //Get chosen size
+    // Get chosen size
     public Dimension getPreferredSize()
     {
         return new Dimension(Slide.WIDTH, Slide.HEIGHT);
     }
 
-    //Update presentation
+    // Update presentation
     public void update(Presentation presentation, Slide data)
     {
         if (data == null) {
@@ -65,8 +54,10 @@ public class SlideViewerComponent extends JComponent
     }
 
     // draw the slide
-    public void paintComponent(Graphics graphics)
+    @Override
+    protected void paintComponent(Graphics graphics)
     {
+        super.paintComponent(graphics);
         graphics.setColor(BGCOLOR);
         graphics.fillRect(0, 0, getSize().width, getSize().height);
         if (presentation.getSlideNumber() < 0 || slide == null) {
@@ -74,9 +65,10 @@ public class SlideViewerComponent extends JComponent
         }
         graphics.setFont(labelFont);
         graphics.setColor(COLOR);
-        graphics.drawString("com.nhlstenden.slide.Slide " + (1 + presentation.getSlideNumber()) + " of " +
-                presentation.getSize(), XPOS, YPOS);
-        Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-        slide.draw(graphics, this, area);
+        graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(), XPOS, YPOS);
+
+        // draw the slide content below the page number
+        int contentStartY = YPOS + FONTHEIGHT + 10;
+        slide.draw(graphics, this, contentStartY);
     }
 }

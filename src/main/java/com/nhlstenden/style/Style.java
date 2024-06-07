@@ -14,10 +14,10 @@ import java.awt.Color;
 
 public abstract class Style
 {
-    // Create concrete style instances based on the level
     public static Style getStyleForLevel(int level)
     {
-        switch (level) {
+        switch (level)
+        {
             case 0:
                 return new StyleLevel0();
             case 1:

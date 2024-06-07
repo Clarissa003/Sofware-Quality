@@ -1,9 +1,7 @@
 package com.nhlstenden.slide;
 
 import com.nhlstenden.presentation.SlideItem;
-import com.nhlstenden.slide.Slide;
 import com.nhlstenden.style.Style;
-
 import java.awt.*;
 import java.awt.font.TextLayout;
 import java.awt.font.TextAttribute;
