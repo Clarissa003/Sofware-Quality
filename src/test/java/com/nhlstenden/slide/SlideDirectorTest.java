@@ -17,7 +17,7 @@ public class SlideDirectorTest
     @BeforeEach
     public void setup()
     {
-        SlideBuilder builder = new SimplePresentationBuilder();
+        SlideBuilder builder = new SimpleSlideBuilder();
         director = new SlideDirector(builder);
     }
 

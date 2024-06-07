@@ -10,10 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
-public class SlideTest {
+public class SlideTest
+{
 
     @Test
-    public void testAppendAndGetSlideItem() {
+    public void testAppendAndGetSlideItem()
+    {
         Slide slide = new Slide();
         SlideItem slideItem = Mockito.mock(SlideItem.class);
         slide.append(slideItem);
@@ -21,23 +23,26 @@ public class SlideTest {
     }
 
     @Test
-    public void testGetTitleAndSetTitle() {
+    public void testGetTitleAndSetTitle()
+    {
         Slide slide = new Slide();
         slide.setTitle("Test Title");
         assertEquals("Test Title", slide.getTitle());
     }
 
     @Test
-    public void testNewBuilder() {
+    public void testNewBuilder()
+    {
         SlideBuilder simpleBuilder = Slide.newBuilder(false);
         SlideBuilder fancyBuilder = Slide.newBuilder(true);
 
-        assertEquals(SimplePresentationBuilder.class, simpleBuilder.getClass());
-        assertEquals(FancyPresentationBuilder.class, fancyBuilder.getClass());
+        assertEquals(SimpleSlideBuilder.class, simpleBuilder.getClass());
+        assertEquals(FancySlideBuilder.class, fancyBuilder.getClass());
     }
 
     @Test
-    public void testDraw() {
+    public void testDraw()
+    {
         Graphics2D graphics = mock(Graphics2D.class);
         SlideViewerComponent area = mock(SlideViewerComponent.class);
 
@@ -51,6 +56,4 @@ public class SlideTest {
 
         slide.draw(graphics, area, 50);
     }
-
-
 }
