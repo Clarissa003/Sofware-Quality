@@ -7,76 +7,86 @@ import com.nhlstenden.style.Style;
 import java.awt.Graphics;
 import java.util.Vector;
 
-public class Slide {
+public class Slide
+{
     public final static int WIDTH = 1200;
     public final static int HEIGHT = 800;
-    protected String title; // title is saved separately
-    protected Vector<SlideItem> items; // slide items are saved in a Vector
+    protected String title;
+    protected Vector<SlideItem> items;
 
-    public Slide() {
+    public Slide()
+    {
         items = new Vector<SlideItem>();
     }
 
     // Add a slide item
-    public void append(SlideItem anItem) {
+    public void append(SlideItem anItem)
+    {
         items.addElement(anItem);
     }
 
     // Get the title of the slide
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
 
     // Change the title of the slide
-    public void setTitle(String newTitle) {
+    public void setTitle(String newTitle)
+    {
         title = newTitle;
     }
 
-    // Create com.nhlstenden.slide.TextItem of String, and add the com.nhlstenden.slide.TextItem
-    public void append(int level, String message) {
+    public void append(int level, String message)
+    {
         append(new TextItem(level, message));
     }
 
-    // Get the com.nhlstenden.presentation.SlideItem
-    public SlideItem getSlideItem(int number) {
+    public SlideItem getSlideItem(int number)
+    {
         return items.elementAt(number);
     }
 
-    // Get all SlideItems in a Vector
-    public Vector<SlideItem> getSlideItems() {
+    public Vector<SlideItem> getSlideItems()
+    {
         return items;
     }
 
-    // Get the size of the com.nhlstenden.slide.Slide
-    public int getSize() {
+    public int getSize()
+    {
         return items.size();
     }
 
-    // draw the slide
-    public void draw(Graphics graphics, SlideViewerComponent area, int contentStartY) {
+    public void draw(Graphics graphics, SlideViewerComponent area, int contentStartY)
+    {
         float scale = getScale(area);
-        int yPos = contentStartY; // Start from the contentStartY
+        int yPos = contentStartY;
         System.out.println("Drawing slide: " + getTitle());
-        // Title is handled separately
         SlideItem titleItem = new TextItem(0, getTitle());
         Style titleStyle = titleItem.getStyle(titleItem.getLevel());
-        if (titleStyle != null) {
-            titleItem.draw(area.getX(), yPos, scale, graphics, titleStyle, area); // Pass area instead of view
+        if (titleStyle != null)
+        {
+            titleItem.draw(area.getX(), yPos, scale, graphics, titleStyle, area);
             yPos += titleItem.getBoundingBox(graphics, area, scale, titleStyle).height;
-        } else {
-            System.err.println("Error: Title style is null"); // Error handling
+        }
+        else
+        {
+            System.err.println("Error: Title style is null");
         }
 
-        for (int number = 0; number < getSize(); number++) {
+        for (int number = 0; number < getSize(); number++)
+        {
             SlideItem slideItem = getSlideItem(number);
-            Style style = slideItem.getStyle(slideItem.getLevel()); //Get style level
-            if (style != null) {
-                //Print the content with the desired level
+            Style style = slideItem.getStyle(slideItem.getLevel());
+            if (style != null)
+            {
                 System.out.println("Drawing slide item " + number + ": " + slideItem.getContent());
-                slideItem.draw(area.getX(), yPos, scale, graphics, style, area); // Pass area instead of view
+                slideItem.draw(area.getX(), yPos, scale, graphics, style, area);
                 yPos += slideItem.getBoundingBox(graphics, area, scale, style).height;
-            } else {
-                System.err.println("Error: com.nhlstenden.style.Style is null for slide item " + number); // Error handling
+            }
+            else
+            {
+                System.err.println("Error: com.nhlstenden.style.Style is null for slide item " + number);
             }
         }
     }
@@ -89,9 +99,9 @@ public class Slide {
     //Gives option to choose between different slide builders
     public static SlideBuilder newBuilder(boolean isFancy) {
         if (isFancy) {
-            return new FancyPresentationBuilder();
+            return new FancySlideBuilder();
         } else {
-            return new SimplePresentationBuilder();
+            return new SimpleSlideBuilder();
         }
     }
 }

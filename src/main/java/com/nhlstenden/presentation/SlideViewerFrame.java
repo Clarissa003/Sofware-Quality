@@ -3,9 +3,6 @@ package com.nhlstenden.presentation;
 import com.nhlstenden.menuController.Accessor;
 import com.nhlstenden.menuController.KeyController;
 import com.nhlstenden.menuController.MenuController;
-import com.nhlstenden.presentation.Presentation;
-import com.nhlstenden.presentation.SlideViewerComponent;
-
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;

@@ -8,34 +8,37 @@ import com.nhlstenden.slide.Slide;
 import javax.swing.*;
 import java.io.IOException;
 
-public class JabberPoint {
+public class JabberPoint
+{
     protected static final String IOERR = "IO Error: ";
     protected static final String JABERR = "Jabberpoint Error ";
     protected static final String JABVERSION = "Jabberpoint 1.6 - OU version";
 
-    public static void main(String[] argv) {
+    public static void main(String[] argv)
+    {
         Presentation presentation = new Presentation();
         SlideViewerFrame frame = new SlideViewerFrame(JABVERSION, presentation);
 
-        try {
-            if (argv.length == 0) { // Load demo presentation
+        try
+        {
+            if (argv.length == 0)
+            {
                 Accessor.getDemoAccessor().loadFile(presentation, "");
-            } else { // Load custom presentation
+            } else
+            {
                 new XMLAccessor().loadFile(presentation, argv[0]);
             }
             presentation.setSlideNumber(0);
 
-            // Create MenuController and set it as the menu bar for the frame
             MenuController menuController = new MenuController(frame, presentation, Accessor.getDemoAccessor());
             frame.setMenuBar(menuController);
 
-            // Show the frame
             frame.setVisible(true);
 
-            // Check if new slide is requested and show create slide dialog
-            if (menuController.isSlideCreationRequested()) {
-                // Call method to show create slide dialog
-                presentation.addObserver(() -> {
+            if (menuController.isSlideCreationRequested())
+            {
+                presentation.addObserver(() ->
+                {
                     Slide newSlide = presentation.getSlide(presentation.getSize() - 1);
                     presentation.append(newSlide);
                     presentation.setSlideNumber(presentation.getSize() - 1);
@@ -43,7 +46,9 @@ public class JabberPoint {
                 menuController.showCreateSlideDialog();
             }
 
-        } catch (IOException ex) {
+        }
+        catch (IOException ex)
+        {
             JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
         }
     }

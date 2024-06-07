@@ -1,5 +1,6 @@
 package com.nhlstenden.presentation;
 
+import com.nhlstenden.presentation.Presentation;
 import com.nhlstenden.slide.Slide;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,15 +51,15 @@ public class SlideViewerComponentTest
     void testSlideViewerComponent()
     {
         Slide slide1 = new Slide();
-        slide1.setTitle("com.nhlstenden.slide.Slide 1 Title");
-        slide1.append(0, "com.nhlstenden.slide.Slide 1 Content");
+        slide1.setTitle("Slide 1 Title");
+        slide1.append(0, "Slide 1 Content");
 
         Slide slide2 = new Slide();
-        slide2.setTitle("com.nhlstenden.slide.Slide 2 Title");
-        slide2.append(0, "com.nhlstenden.slide.Slide 2 Content");
+        slide2.setTitle("Slide 2 Title");
+        slide2.append(0, "Slide 2 Content");
 
         Presentation presentation = new Presentation();
-        presentation.setTitle("com.nhlstenden.presentation.Presentation Title");
+        presentation.setTitle("Presentation Title");
         presentation.append(slide1);
         presentation.append(slide2);
 
@@ -69,14 +70,12 @@ public class SlideViewerComponentTest
 
         SlideViewerComponent component = new SlideViewerComponent(presentation, frame);
 
-        Mockito.when(frame.getTitle()).thenReturn("com.nhlstenden.presentation.Presentation Title");
+        Mockito.when(frame.getTitle()).thenReturn("Presentation Title");
 
         component.update(presentation, slide1);
 
-        assertEquals("com.nhlstenden.presentation.Presentation Title", frame.getTitle());
+        assertEquals("Presentation Title", frame.getTitle());
 
         assertDoesNotThrow(() -> component.paintComponent(graphics));
     }
 }
-
-

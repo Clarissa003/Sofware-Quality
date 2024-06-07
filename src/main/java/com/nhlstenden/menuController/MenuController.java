@@ -97,7 +97,7 @@ public class MenuController extends MenuBar {
 
     public void showCreateSlideDialog() {
         if (!newSlideRequested) {
-            return; // New slide not requested, do nothing
+            return;
         }
 
         String title = JOptionPane.showInputDialog(parent, "Enter slide title:");

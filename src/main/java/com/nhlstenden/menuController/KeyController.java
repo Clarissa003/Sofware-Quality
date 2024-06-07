@@ -1,6 +1,5 @@
 package com.nhlstenden.menuController;
 
-import com.nhlstenden.menuController.Command;
 import com.nhlstenden.presentation.Presentation;
 
 import java.awt.event.KeyEvent;

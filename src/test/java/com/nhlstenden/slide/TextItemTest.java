@@ -3,7 +3,6 @@ package com.nhlstenden.slide;
 import com.nhlstenden.style.Style;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,8 @@ import java.text.AttributedString;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class TextItemTest {
+public class TextItemTest
+{
 
     private TextItem textItem;
     private TextItem emptyTextItem;
@@ -22,7 +22,8 @@ public class TextItemTest {
     private ImageObserver mockObserver;
 
     @Before
-    public void setUp() {
+    public void setUp()
+    {
         textItem = new TextItem(1, "Test text");
         emptyTextItem = new TextItem();
         mockStyle = mock(Style.class);
@@ -40,31 +41,36 @@ public class TextItemTest {
     }
 
     @Test
-    public void testConstructorWithText() {
+    public void testConstructorWithText()
+    {
         TextItem item = new TextItem(2, "Sample text");
         assertEquals(2, item.getLevel());
         assertEquals("Sample text", item.getText());
     }
 
     @Test
-    public void testConstructorWithoutText() {
+    public void testConstructorWithoutText()
+    {
         TextItem item = new TextItem();
         assertEquals(0, item.getLevel());
         assertEquals("No Text Given", item.getText());
     }
 
     @Test
-    public void testGetText() {
+    public void testGetText()
+    {
         assertEquals("Test text", textItem.getText());
     }
 
     @Test
-    public void testGetText_EmptyText() {
+    public void testGetText_EmptyText()
+    {
         assertEquals("No Text Given", emptyTextItem.getText());
     }
 
     @Test
-    public void testGetAttributedString() {
+    public void testGetAttributedString()
+    {
         AttributedString attributedString = textItem.getAttributedString(mockStyle, 1.0f);
         assertNotNull(attributedString);
         AttributedCharacterIterator iterator = attributedString.getIterator();
@@ -76,7 +82,8 @@ public class TextItemTest {
     }
 
     @Test
-    public void testGetAttributedString_EmptyText() {
+    public void testGetAttributedString_EmptyText()
+    {
         AttributedString attributedString = emptyTextItem.getAttributedString(mockStyle, 1.0f);
         assertNotNull(attributedString);
         AttributedCharacterIterator iterator = attributedString.getIterator();
@@ -88,7 +95,8 @@ public class TextItemTest {
     }
 
     @Test
-    public void testGetBoundingBox() {
+    public void testGetBoundingBox()
+    {
         Rectangle boundingBox = textItem.getBoundingBox(realGraphics, mockObserver, 1.0f, mockStyle);
         assertNotNull(boundingBox);
         assertTrue(boundingBox.width > 0);
@@ -96,21 +104,22 @@ public class TextItemTest {
     }
 
     @Test
-    public void testDraw() {
+    public void testDraw()
+    {
         textItem.draw(0, 0, 1.0f, realGraphics, mockStyle, mockObserver);
     }
 
     @Test
-    public void testToString() {
+    public void testToString()
+    {
         String result = textItem.toString();
         assertEquals("com.nhlstenden.slide.TextItem[1,Test text]", result);
     }
 
     @Test
-    public void testToString_EmptyText() {
+    public void testToString_EmptyText()
+    {
         String result = emptyTextItem.toString();
         assertEquals("com.nhlstenden.slide.TextItem[0,No Text Given]", result);
     }
-
 }
-

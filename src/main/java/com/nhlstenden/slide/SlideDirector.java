@@ -13,12 +13,13 @@ public class SlideDirector
         this.builder = builder;
     }
 
-    //Create slide with the builder
     public Slide createSlide(String title, List<? extends SlideItem> slideItems)
     {
         builder.createTitle(title);
-        if (slideItems != null) {
-            for (SlideItem item : slideItems) {
+        if (slideItems != null)
+        {
+            for (SlideItem item : slideItems)
+            {
                 builder.createSlideItem(item);
             }
         }

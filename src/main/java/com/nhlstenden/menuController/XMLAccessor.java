@@ -105,7 +105,7 @@ public class XMLAccessor extends Accessor
 
     protected void loadSlideItem(Slide slide, Element item)
     {
-        int level = 1; // default
+        int level = 1;
         NamedNodeMap attributes = item.getAttributes();
         String levelText = attributes.getNamedItem(LEVEL).getTextContent();
         if (levelText != null)

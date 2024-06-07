@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class StyleLevel4 extends Style
 {
-    //Set values for style
     @Override
     public String getFontName()
     {

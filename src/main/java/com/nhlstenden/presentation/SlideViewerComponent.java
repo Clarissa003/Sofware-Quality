@@ -9,7 +9,8 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class SlideViewerComponent extends JComponent {
+public class SlideViewerComponent extends JComponent
+{
     Slide slide; // current slide
     private Font labelFont = null; // font for labels
     private Presentation presentation = null; // the presentation
@@ -25,7 +26,8 @@ public class SlideViewerComponent extends JComponent {
     private static final int XPOS = 1100;
     private static final int YPOS = 20;
 
-    public SlideViewerComponent(Presentation presentation, JFrame frame) {
+    public SlideViewerComponent(Presentation presentation, JFrame frame)
+    {
         setBackground(BGCOLOR);
         this.presentation = presentation;
         labelFont = new Font(FONTNAME, FONTSTYLE, FONTHEIGHT);
@@ -33,12 +35,14 @@ public class SlideViewerComponent extends JComponent {
     }
 
     // Get chosen size
-    public Dimension getPreferredSize() {
+    public Dimension getPreferredSize()
+    {
         return new Dimension(Slide.WIDTH, Slide.HEIGHT);
     }
 
     // Update presentation
-    public void update(Presentation presentation, Slide data) {
+    public void update(Presentation presentation, Slide data)
+    {
         if (data == null) {
             repaint();
             return;
@@ -51,7 +55,8 @@ public class SlideViewerComponent extends JComponent {
 
     // draw the slide
     @Override
-    protected void paintComponent(Graphics graphics) {
+    protected void paintComponent(Graphics graphics)
+    {
         super.paintComponent(graphics);
         graphics.setColor(BGCOLOR);
         graphics.fillRect(0, 0, getSize().width, getSize().height);
@@ -63,7 +68,7 @@ public class SlideViewerComponent extends JComponent {
         graphics.drawString("Slide " + (1 + presentation.getSlideNumber()) + " of " + presentation.getSize(), XPOS, YPOS);
 
         // draw the slide content below the page number
-        int contentStartY = YPOS + FONTHEIGHT + 10; // Adjust the Y position to start drawing content below the page number
+        int contentStartY = YPOS + FONTHEIGHT + 10;
         slide.draw(graphics, this, contentStartY);
     }
 }

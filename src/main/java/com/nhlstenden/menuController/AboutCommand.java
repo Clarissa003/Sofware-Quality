@@ -5,20 +5,21 @@ import com.nhlstenden.presentation.Presentation;
 import javax.swing.JOptionPane;
 import java.awt.Frame;
 
-public class AboutCommand extends Command {
+public class AboutCommand extends Command
+{
     private final Frame parentFrame;
 
-    public AboutCommand(Presentation presentation, Frame parentFrame) {
+    public AboutCommand(Presentation presentation, Frame parentFrame)
+    {
         super(presentation);
         this.parentFrame = parentFrame;
     }
 
     @Override
-    public void execute() {
-        // Create an instance of JOptionPane
+    public void execute()
+    {
         JOptionPane optionPane = new JOptionPane();
 
-        // Pass the Frame and JOptionPane to the show method of AboutBox
         AboutBox.show(parentFrame, optionPane);
     }
 }
